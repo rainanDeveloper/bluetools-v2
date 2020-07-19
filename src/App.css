@@ -1,0 +1,108 @@
+* {
+	box-sizing: border-box;
+}
+
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+html, body, #root {
+	padding: 0;
+	margin: 0;
+	color: #1F2226;
+	font-family: 'Roboto', sans-serif;
+	width: 100vw;
+	height: 100vh;
+}
+
+/* Theme colors*/
+
+/* Blue shades */
+
+.color-primary { 
+	background: #2E6AD1;
+	color: white
+}
+.color-primary-light { 
+	background: #75A2ED;
+	color: white
+}
+.color-primary-dark { 
+	background: #0C3882;
+	color: white
+}
+
+/* Green shades */
+
+.color-secondary{ 
+	background: #1FDE49;
+	color: white
+}
+.color-secondary-light { 
+	background: #6BF289;
+	color: white
+}
+.color-secondary-dark { 
+	background: #009421;
+	color: white
+}
+
+/* Purple shades */
+
+.color-terciary { 
+	background: #7A2CD3;
+	color: white
+}
+.color-terciary-light { 
+	background: #AD74EE;
+	color: white
+}
+.color-terciary-dark { 
+	background: #440A85;
+	color: white
+}
+
+.color-complement-0 { 
+	background: #FFB124;
+	color: white
+}	/* Orange shades */
+.color-complement-light { 
+	background: #FFCC71;
+	color: white
+}
+.color-complement-dark { 
+	background: #C47E00;
+	color: white
+}
+
+/* Grey shades */
+
+.color-primary-0 { 
+	background: #1F2226;
+	color: white
+}
+.color-primary-light { 
+	background: #626C7C;
+	color: white
+}
+.color-primary-dark { 
+	background: #090D14;
+	color: white
+}
+
+button, .button {
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.App {
+	text-align: center;
+}
+
+.input-group {
+	display: flex;
+	flex-direction: column;
+	margin-top: 15px;
+}
