@@ -5,7 +5,6 @@ import logo from '../../common-assets/logo.png'
 function Login(){
 	function handleLogin(event){
 		event.preventDefault()
-
 	}
 	return (
 		<div className="loginContainer">
@@ -23,7 +22,7 @@ function Login(){
 					</div>
 					<div className="input-group">
 						<label htmlFor="password">Senha</label>
-						<input type="text" id="password"/>
+						<input type="password" id="password"/>
 					</div>
 					<button className="color-primary loginButton">
 						Login
