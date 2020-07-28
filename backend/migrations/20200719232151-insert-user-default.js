@@ -5,9 +5,9 @@ module.exports = {
 	up: async (queryInterface, DataTypes) => {
 		var salt = crypto.randomBytes(16).toString('hex')
 
-		var hash = crypto.createHash('sha256').update('Admin'+salt).digest('base64')
-		hash = crypto.createHash('sha256').update(hash+salt).digest('base64')
-		hash = crypto.createHash('sha256').update(hash+salt).digest('base64')
+		var hash = crypto.createHash('sha256').update('Admin'+salt).digest('hex')
+		hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
+		hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
 
 		return [
 			queryInterface.bulkInsert('usuario', [
@@ -20,8 +20,8 @@ module.exports = {
 					cpf: '00000000000',
 					cnpj: '00000000000000',
 					image: '',
-					createdAt: moment().format('YYYYMMDDHHMMSS'),
-					updatedAt: moment().format('YYYYMMDDHHMMSS')
+					createdAt: moment().format('YYYYMMDDHHmmSS'),
+					updatedAt: moment().format('YYYYMMDDHHmmSS')
 				}
 		])]
 	},
