@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	outline: none
 }
 
 /* Fonts */
@@ -88,6 +89,12 @@ html, body, #root {
 .color-primary-dark { 
 	background: #090D14;
 	color: white
+}
+
+input {
+	padding: 10px;
+	border: solid 1px #ccc;
+	border-radius: 5px;
 }
 
 button, .button {
