@@ -1,5 +1,6 @@
 const {Op} = require('sequelize')
 const {usuario} = require('../models')
+const {passwordIsValid, emailValidation} = require('./validationController')
 const crypto = require('crypto')
 const moment = require('moment')
 const jwt = require('jsonwebtoken')
@@ -38,20 +39,7 @@ module.exports = {
 	},
 	async store(request, response){
 
-		const creationMoment = moment().format('YYYY-MM-DD HH:MM:SS')
-		console.log(creationMoment)
-
-		function passwordIsValid(password){
-			if(password.length<8){
-				return false
-			}
-	
-			if(!(/^[^ ]+$/g).test(password)){
-				return false
-			}
-			
-			return ((/\w/g).test(password)&&(/[^\w\s]/g).test(password))
-		}
+		const creationMoment = moment().format('YYYYMMDDHHmmSS')
 
 		const {
 			id,
@@ -81,6 +69,10 @@ module.exports = {
 
 				if(!passwordIsValid(password)){
 					return response.status(400).json({message: 'Invalid password!'})
+				}
+
+				if(!(emailValidation(email)&&email.length>0)){
+					return response.status(400).json({message: `Email field must have an valid email or be empty`})
 				}
 
 				const salt = crypto.randomBytes(16).toString('hex')
@@ -122,6 +114,10 @@ module.exports = {
 			}
 			if(!passwordIsValid(password)){
 				return response.status(400).json({message: 'Invalid password!'})
+			}
+
+			if(!(emailValidation(email)&&email.length>0)){
+				return response.status(400).json({message: `Email field must have an valid email or be empty`})
 			}
 			const salt = crypto.randomBytes(16).toString('hex')
 			hash = crypto.createHash('sha256').update(password+salt).digest('hex')
