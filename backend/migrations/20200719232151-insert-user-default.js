@@ -20,8 +20,8 @@ module.exports = {
 					cpf: '00000000000',
 					cnpj: '00000000000000',
 					image: '',
-					createdAt: moment().format('YYYYMMDDHHMMSS'),
-					updatedAt: moment().format('YYYYMMDDHHMMSS')
+					createdAt: moment().format('YYYY-MM-DD HH:MM:SS'),
+					updatedAt: moment().format('YYYY-MM-DD HH:MM:SS')
 				}
 		])]
 	},
