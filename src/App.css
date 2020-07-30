@@ -19,6 +19,7 @@ html, body, #root {
 	font-family: 'Roboto', sans-serif;
 	width: 100vw;
 	height: 100vh;
+	background: #f2f2f2;
 }
 
 /* Theme colors*/

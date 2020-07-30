@@ -1,0 +1,35 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 10px;
+    padding-top: 55px;
+    grid-gap: 10px;
+}
+
+
+.dashboard div {
+    min-height: 240px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    border: solid 1px #ccc;
+    color: #888;
+}
+
+.dashboard .graphDash {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.dashboard div h1 {
+    font-size: 4em;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.dashboard div h2 {
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+}
