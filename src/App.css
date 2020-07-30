@@ -1,3 +1,8 @@
+:root {
+	--color-primary-shade: #1F2226;
+	--color-primary-shade-light: #626C7C;
+  }
+
 * {
 	box-sizing: border-box;
 	outline: none
@@ -63,7 +68,7 @@ html, body, #root {
 	color: white
 }
 
-.color-complement-0 { 
+.color-complement { 
 	background: #FFB124;
 	color: white
 }	/* Orange shades */
@@ -78,15 +83,15 @@ html, body, #root {
 
 /* Grey shades */
 
-.color-primary-0 { 
+.color-primary-shade { 
 	background: #1F2226;
 	color: white
 }
-.color-primary-light { 
+.color-primary-shade-light { 
 	background: #626C7C;
 	color: white
 }
-.color-primary-dark { 
+.color-primary-shade-dark { 
 	background: #090D14;
 	color: white
 }

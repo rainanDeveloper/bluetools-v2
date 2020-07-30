@@ -1,11 +1,11 @@
 import React from 'react'
 import './style.css'
-import logo from '../../common-assets/logo.png'
-import api from '../../services/api'
+import SupMenuAdmin from '../../components/SupMenuAdmin'
 
 function DashBoard(){
     return (
         <>
+            <SupMenuAdmin/>
         </>
     )
 }
