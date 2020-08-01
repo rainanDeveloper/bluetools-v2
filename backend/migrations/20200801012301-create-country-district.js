@@ -16,7 +16,7 @@ module.exports = {
       name: {
         type: DataTypes.STRING
       },
-      country: {
+      countryId: {
         type: DataTypes.INTEGER,
         references: { model: 'country', key: 'id' }
       },

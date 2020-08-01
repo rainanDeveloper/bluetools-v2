@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 	};
 	country.init({
 		code: DataTypes.CHAR,
-		abreviation: DataTypes.CHAR,
+		abbreviation: DataTypes.CHAR,
 		name: DataTypes.STRING,
 		currency: DataTypes.CHAR
 	}, {

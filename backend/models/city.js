@@ -13,8 +13,6 @@ module.exports = (sequelize, DataTypes) => {
     code: DataTypes.CHAR,
     abbreviation: DataTypes.CHAR,
     name: DataTypes.STRING,
-    country_district: DataTypes.INTEGER,
-    country: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'city',

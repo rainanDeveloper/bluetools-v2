@@ -16,11 +16,11 @@ module.exports = {
 			name: {
 				type: Sequelize.STRING
 			},
-			country_district: {
+			country_districtId: {
 				type: Sequelize.INTEGER,
 				references: { model: 'country_district', key: 'id'}
 			},
-			country: {
+			countryId: {
 				type: Sequelize.INTEGER,
 				references: { model: 'country', key: 'id' }
 			},
