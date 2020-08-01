@@ -51,6 +51,6 @@ div.supMenu li ul.internalDropDown li {
 	width: 100%;
 }
 
-div.supMenu li.active ul.internalDropDown {
+div.supMenu li:hover ul.internalDropDown {
 	display: flex;
 }

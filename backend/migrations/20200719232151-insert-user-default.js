@@ -10,7 +10,7 @@ module.exports = {
 		hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
 
 		return [
-			queryInterface.bulkInsert('usuario', [
+			queryInterface.bulkInsert('user', [
 				{
 					name: "Admin",
 					login: 'Admin',
@@ -27,6 +27,6 @@ module.exports = {
 	},
 
 	down: async (queryInterface, DataTypes) => {
-		return queryInterface.bulkDelete('usuario')
+		return queryInterface.bulkDelete('user')
 	}
 };
