@@ -18,17 +18,7 @@ function CadPais(){
 						<button className="color-primary">Imprimir</button>
 					</div>
 				</div>
-				<table>
-					<thead className="color-primary">
-						<tr>
-							<th>ID</th>
-							<th>Código IBGE</th>
-							<th>Nome</th>
-							<th>Sigla</th>
-							<th></th>
-						</tr>
-					</thead>
-				</table>
+				
 			</div>
 		</>
 	)
