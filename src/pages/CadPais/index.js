@@ -1,8 +1,17 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './style.css'
 import SupMenuAdmin from '../../components/SupMenuAdmin'
+import HtmlTable from '../../components/HtmlTable'
+import api from '../../services/api'
 
 function CadPais(){
+	
+	const {countries, setCountries} = useState([])
+
+	useEffect(()=>{
+		
+	}, [])
+
 	return (
 		<>
 			<SupMenuAdmin/>
@@ -18,7 +27,7 @@ function CadPais(){
 						<button className="color-primary">Imprimir</button>
 					</div>
 				</div>
-				
+				<HtmlTable id="tblPais" tableTitles={["Código","Abreviação","Nome", "Moeda"]} tableData={countries}/>
 			</div>
 		</>
 	)

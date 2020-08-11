@@ -1,0 +1,13 @@
+.htmlBluetoolsTable {
+    border: solid 1px #ccc;
+    border-collapse: collapse;
+}
+
+.htmlBluetoolsTable thead {
+    border: solid 1px var(--color-primary-dark)
+}
+
+.htmlBluetoolsTable thead th {
+    border: solid 1px var(--color-primary-dark);
+    color: white
+}
