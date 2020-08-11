@@ -1,0 +1,42 @@
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.titleListTable {
+    text-align: center;
+    font-size: 1.6em;
+    color: #464646
+}
+
+.utility {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    border: solid 1px #464646;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.utility .searchArea {
+    max-width: 350px;
+    width: 30%;
+}
+
+.utility #searchInput {
+    width: 100%;
+}
+
+.utility .utilityButtons {
+    display: flex;
+    gap: 5px
+}
+
+.utility button {
+    color: white;
+}
+

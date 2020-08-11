@@ -1,5 +1,5 @@
 const {Op} = require('sequelize')
-const {usuario} = require('../models')
+const {user} = require('../models')
 const {passwordIsValid, emailValidation} = require('./validationController')
 const crypto = require('crypto')
 const moment = require('moment')
@@ -10,7 +10,7 @@ module.exports = {
 	async login(request, response){
 		const {login, password} = request.body
 		
-		const [qryResponse] = await usuario.findAll({
+		const [qryResponse] = await user.findAll({
 			where: {
 				login: {
 					[Op.like]: login
@@ -19,12 +19,12 @@ module.exports = {
 		})
 
 		if(qryResponse){
-			const {dataValues: user} = qryResponse
-			var hash = crypto.createHash('sha256').update(password+user.salt).digest('hex')
-			hash = crypto.createHash('sha256').update(hash+user.salt).digest('hex')
-			hash = crypto.createHash('sha256').update(hash+user.salt).digest('hex')
-			if(hash===user.password){
-				var token = jwt.sign({id: user.id}, config.SECRET, {
+			const {dataValues: userFound} = qryResponse
+			var hash = crypto.createHash('sha256').update(password+userFound.salt).digest('hex')
+			hash = crypto.createHash('sha256').update(hash+userFound.salt).digest('hex')
+			hash = crypto.createHash('sha256').update(hash+userFound.salt).digest('hex')
+			if(hash===userFound.password){
+				var token = jwt.sign({id: userFound.id}, config.SECRET, {
 						expiresIn: 86400
 					})
 				return response.json({token})
@@ -56,9 +56,9 @@ module.exports = {
 		var hash = ''
 
 		if(id){
-			const user = usuario.findByPk(id)
+			const newUser = user.findByPk(id)
 
-			if(user){
+			if(newUser){
 				if(cpf.replace(/\D/g, '').length!==11&&cpf.replace(/\D/g, '').length!==0){
 					return response.status(400).json({message: `CPF field must have 11 numeric chars or be empty`})
 				}
@@ -81,21 +81,21 @@ module.exports = {
 				hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
 				hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
 
-				user.login = login
-				user.name = name
-				user.password = hash
-				user.salt = salt
-				user.email = email
-				user.cpf = cpf
-				user.cnpj = cnpj
-				user.image = image
-				user.address=address
-				user.updatedAt = creationMoment
+				newUser.login = login
+				newUser.name = name
+				newUser.password = hash
+				newUser.salt = salt
+				newUser.email = email
+				newUser.cpf = cpf
+				newUser.cnpj = cnpj
+				newUser.image = image
+				newUser.address=address
+				newUser.updatedAt = creationMoment
 
 				try{
-					await user.save()
+					await newUser.save()
 
-					return response.json(user)
+					return response.json(newUser)
 				}
 				catch(error){
 					return response.status(500).json({message: error})
@@ -124,7 +124,7 @@ module.exports = {
 			hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
 			hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
 			try{
-				const user = await usuario.create({
+				const newUser = await user.create({
 					name,
 					login,
 					password: hash,
@@ -138,7 +138,7 @@ module.exports = {
 					updatedAt: creationMoment
 				})
 	
-				return response.json(user)
+				return response.json(newUser)
 			}
 			catch(error){
 				return response.status(500).json({message: error})

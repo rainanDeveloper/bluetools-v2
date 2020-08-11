@@ -5,7 +5,7 @@ module.exports = {
 	up: async (queryInterface, DataTypes) => {
 		var salt = crypto.randomBytes(16).toString('hex')
 
-		var hash = crypto.createHash('sha256').update('Admin'+salt).digest('hex')
+		var hash = crypto.createHash('sha256').update('admin'+salt).digest('hex')
 		hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
 		hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
 
@@ -13,7 +13,7 @@ module.exports = {
 			queryInterface.bulkInsert('user', [
 				{
 					name: "Admin",
-					login: 'Admin',
+					login: 'admin',
 					password: hash,
 					salt,
 					email: '',

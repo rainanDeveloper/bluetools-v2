@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   city_.init({
     code: DataTypes.CHAR,
-    abbreviation: DataTypes.CHAR,
     name: DataTypes.STRING,
   }, {
     sequelize,
