@@ -1,0 +1,40 @@
+.loginContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.loginForm {
+	padding: 10px;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	min-width: 400px;
+}
+
+.loginForm header {
+	display: flex;
+	justify-content: center;
+}
+
+.loginForm header .logoContainer {
+	text-decoration: none;
+	color: unset;
+	display: grid;
+	grid-template-columns: 80px auto;
+	grid-gap: 15px;
+}
+
+.loginForm header img {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	border-radius: 5px;
+}
+
+.loginButton {
+	width: 100%;
+	margin-top: 15px;
+}

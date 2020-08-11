@@ -1,0 +1,56 @@
+div.supMenu {
+	cursor: default;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	font-size: 10pt;
+	user-select: none;
+	overflow: visible;
+	color: white;
+	background-color: var(--color-primary-shade);
+}
+
+div.supMenu ul {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	padding: 0;
+	margin: 0;
+}
+
+div.supMenu li {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: visible;
+	background: var(--color-primary-shade);
+}
+
+div.supMenu li a {
+	color: white;
+	cursor: default;
+	padding: 5px;
+	text-decoration: none;
+}
+
+div.supMenu li a:hover {
+	background: var(--color-primary-shade-light);
+}
+
+div.supMenu li ul.internalDropDown {
+	position: absolute;
+	top:25px;
+	display: none;
+	flex-direction: column;
+	height: 0;
+	overflow: visible;
+}
+
+div.supMenu li ul.internalDropDown li {
+	width: 100%;
+}
+
+div.supMenu li:hover ul.internalDropDown {
+	display: flex;
+}
