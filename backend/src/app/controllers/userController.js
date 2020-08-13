@@ -4,7 +4,7 @@ const {passwordIsValid, emailValidation} = require('./validationController')
 const crypto = require('crypto')
 const moment = require('moment')
 const jwt = require('jsonwebtoken')
-const config = require('../config/config.json')
+const config = require('../../config/config.json')
 
 module.exports = {
 	async login(request, response){

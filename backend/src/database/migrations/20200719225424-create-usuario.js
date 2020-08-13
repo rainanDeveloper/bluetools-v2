@@ -33,9 +33,6 @@ module.exports = {
       image: {
         type: DataTypes.STRING
       },
-      address: {
-        type: DataTypes.STRING
-      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE

@@ -1,25 +1,27 @@
 {
-  "name": "bluetools_backend",
-  "version": "0.1.0",
-  "description": "Backend da aplicaçao bluetools",
-  "main": "index.js",
-  "repository": "https://github.com/rainanDeveloper/bluetools-v2",
-  "author": "Rainan Miranda de Jesus<jesus.rainan@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.27.0",
-    "mysql2": "^2.1.0",
-    "sequelize": "^6.3.3"
-  },
-  "devDependencies": {
-    "jest": "^26.4.0",
-    "nodemon": "^2.0.4",
-    "sequelize-cli": "^6.2.0"
-  },
-  "scripts": {
-    "test": "jest"
-  }
+	"name": "bluetools_backend",
+	"version": "0.1.0",
+	"description": "Backend da aplicaçao bluetools",
+	"main": "src/index.js",
+	"repository": "https://github.com/rainanDeveloper/bluetools-v2",
+	"author": "Rainan Miranda de Jesus<jesus.rainan@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"jsonwebtoken": "^8.5.1",
+		"moment": "^2.27.0",
+		"mysql2": "^2.1.0",
+		"sequelize": "^6.3.3"
+	},
+	"devDependencies": {
+		"jest": "^26.4.0",
+		"nodemon": "^2.0.4",
+		"sequelize-cli": "^6.2.0"
+	},
+	"scripts": {
+		"test": "jest",
+		"start": "node ./",
+		"dev": "nodemon ./"
+	}
 }
