@@ -24,8 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'user',
-    tableName: 'user'
+    modelName: 'user'
   });
   return user;
 };

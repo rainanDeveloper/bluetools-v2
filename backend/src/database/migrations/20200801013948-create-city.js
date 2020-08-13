@@ -1,6 +1,6 @@
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable('city', {
+		await queryInterface.createTable('cities', {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
@@ -18,12 +18,14 @@ module.exports = {
 			country_districtId: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
-				references: { model: 'country_district', key: 'id'}
+				defaultValue: 1,
+				references: { model: 'country_districts', key: 'id'}
 			},
 			countryId: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
-				references: { model: 'country', key: 'id' }
+				defaultValue: 1,
+				references: { model: 'countries', key: 'id' }
 			},
 			createdAt: {
 				allowNull: false,
@@ -36,6 +38,6 @@ module.exports = {
 		});
 	},
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable('city');
+		await queryInterface.dropTable('cities');
 	}
 };

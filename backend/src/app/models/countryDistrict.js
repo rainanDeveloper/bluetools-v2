@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'country_district',
-    tableName: 'country_district'
+    modelName: 'countryDistrict',
+    tableName: 'country_districts'
   });
   return country_district;
 };

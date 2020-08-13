@@ -1,0 +1,16 @@
+{
+	"username": "root",
+	"password": "6581016#Sagan",
+	"database": "bluetools_v2",
+	"host": "127.0.0.1",
+	"dialect": "mysql",
+	"operatorAliases": false,
+	"logging": false,
+	"define":{
+		"timestamps": true,
+		"undescored": true,
+		"undescoredAll": true
+	},
+	"appPort": 3333,
+	"SECRET": "d501056a6cc32bd85f67e66591cbdf96"
+}

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
-			this.hasMany(models.country_district)
+			this.hasMany(models.countryDistrict)
 		}
 	};
 	country.init({
@@ -20,8 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 		currency: DataTypes.CHAR
 	}, {
 		sequelize,
-		modelName: 'country',
-		tableName: 'country'
+		modelName: 'country'
 	});
 	return country;
 };
