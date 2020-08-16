@@ -86,4 +86,26 @@ describe('Authentication', ()=>{
 
 		expect(response.status).toBe(401)
 	})
+
+	it("should return a list of users when the route '/user/' is requested", async ()=>{
+		const testingUser = await factory.create('user')
+
+		const response = await request(app)
+		.get('/user/')
+		.set('auth', testingUser.generateToken())
+		.send()
+
+		expect(Array.isArray(response.body)).toBe(true)
+	})
+
+	it("should return an user on the first position of array, due previous insertion", async ()=>{
+		const testingUser = await factory.create('user')
+
+		const response = await request(app)
+		.get('/user/')
+		.set('auth', testingUser.generateToken())
+		.send()
+
+		expect(response.body[0]).toHaveProperty('id')
+	})
 })

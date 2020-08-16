@@ -1,6 +1,7 @@
 const {user} = require('../models')
 const jwt = require('jsonwebtoken')
 const {promisify} = require('util')
+const { listen } = require('../../app')
 
 
 module.exports = {
@@ -54,5 +55,10 @@ module.exports = {
 			})
 		}
 
+	},
+	async list(request, response){
+		const users = await user.findAll()
+
+		return response.json(users)
 	}
 }
