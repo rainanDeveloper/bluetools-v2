@@ -1,13 +1,32 @@
-const {Op} = require('sequelize')
 const {user} = require('../models')
-const crypto = require('crypto')
-const moment = require('moment')
-const jwt = require('jsonwebtoken')
-const config = require('../../config/config.js')
 
 module.exports = {
 	async login(request, response){
-		response.send('')
+		const {login, password} = request.body
+
+		const User = await user.findOne({
+			where: {
+				login
+			}
+		})
+
+		if(!User){
+			return response.status(401).json({
+				message: 'User not found!'
+			})
+		}
+
+		if(!(await User.checkPassword(password))){
+			return response.status(401).json({
+				message: 'Incorrect password!'
+			})
+		}
+
+		const token = User.generateToken()
+
+		return response.json({
+			token
+		})
 	},
 	async store(request, response){
 

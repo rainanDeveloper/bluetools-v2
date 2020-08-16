@@ -1,4 +1,5 @@
 const {Model} = require('sequelize');
+const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 
 module.exports = (sequelize, DataTypes) => {
@@ -44,5 +45,18 @@ module.exports = (sequelize, DataTypes) => {
 			}
 		}
 	});
+
+	user.prototype.checkPassword = function(password){
+		var hash = crypto.createHash('sha256').update(password+this.salt).digest('hex')
+		hash = crypto.createHash('sha256').update(hash+this.salt).digest('hex')
+		hash = crypto.createHash('sha256').update(hash+this.salt).digest('hex')
+
+		return hash===this.password
+	}
+
+	user.prototype.generateToken = function(){
+		return jwt.sign({id: this.id}, process.env.APP_SECRET)
+	}
+
 	return user;
 };
