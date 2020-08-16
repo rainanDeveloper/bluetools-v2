@@ -9,7 +9,7 @@ function CadPais(){
 	const {countries, setCountries} = useState([])
 
 	useEffect(()=>{
-		
+		api.get()
 	}, [])
 
 	return (

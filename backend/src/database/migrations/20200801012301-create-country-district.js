@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('country_district', {
+    await queryInterface.createTable('country_districts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -18,7 +18,8 @@ module.exports = {
       },
       countryId: {
         type: DataTypes.INTEGER,
-        references: { model: 'country', key: 'id' }
+				defaultValue: 1,
+        references: { model: 'countries', key: 'id' }
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +32,6 @@ module.exports = {
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('country_district')
+    await queryInterface.dropTable('country_districts')
   }
 };

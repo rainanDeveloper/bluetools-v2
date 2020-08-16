@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('user', {
+    await queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -33,9 +33,6 @@ module.exports = {
       image: {
         type: DataTypes.STRING
       },
-      address: {
-        type: DataTypes.STRING
-      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE
@@ -47,6 +44,6 @@ module.exports = {
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('user');
+    await queryInterface.dropTable('users');
   }
 };

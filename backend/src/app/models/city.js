@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
   class city_ extends Model {
     static associate(models) {
       // define association here
-      this.belongsTo(models.country)
-      this.belongsTo(models.country_district)
+      this.belongsTo(models.country, {foreignKey: 'countryId'})
+      this.belongsTo(models.countryDistrict, {foreignKey: 'country_districtId'})
     }
   };
   city_.init({
@@ -14,8 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
   }, {
     sequelize,
-    modelName: 'city',
-    tableName: 'city'
+    modelName: 'city'
   });
   return city_;
 };
