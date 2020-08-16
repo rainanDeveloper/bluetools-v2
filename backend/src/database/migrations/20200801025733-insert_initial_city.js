@@ -11,7 +11,10 @@ module.exports = {
 
   down: async () => {
     return city.findOne().then(finded=>{
-		return finded.destroy()
+		if(finded){
+			return finded.destroy()
+		}
+		return true
 	})
   }
 };

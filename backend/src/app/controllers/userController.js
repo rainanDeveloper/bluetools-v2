@@ -7,7 +7,7 @@ const config = require('../../config/config.js')
 
 module.exports = {
 	async login(request, response){
-		
+		response.send('')
 	},
 	async store(request, response){
 
