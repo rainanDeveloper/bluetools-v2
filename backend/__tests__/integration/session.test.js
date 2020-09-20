@@ -13,8 +13,6 @@ describe('Authentication', ()=>{
 			password_unhashed: 'rightpassword'
 		})
 
-		console.log(testingUser)
-
 		const response = await request(app)
 		.post('/user/login')
 		.send({
@@ -25,7 +23,22 @@ describe('Authentication', ()=>{
 		expect(response.status).toBe(200)
 	})
 
-	it("shouldn't authenticate with invalid credentials", async ()=>{
+	it("shouldn't authenticate with invalid login", async ()=>{
+		await factory.create('user', {
+			password_unhashed: 'rightpassword'
+		})
+
+		const response = await request(app)
+		.post('/user/login')
+		.send({
+			login: "wronglogin",
+			password: 'rightpassword'
+		})
+
+		expect(response.status).toBe(401)
+	})
+
+	it("shouldn't authenticate with invalid password", async ()=>{
 		const testingUser = await factory.create('user', {
 			password_unhashed: 'rightpassword'
 		})
@@ -67,7 +80,7 @@ describe('Authentication', ()=>{
 	})
 
 	it("should'n be able to access private routes when not authenticated", async ()=>{
-		const testingUser = await factory.create('user')
+		await factory.create('user')
 
 		const response = await request(app)
 		.get('/user/')
@@ -77,7 +90,7 @@ describe('Authentication', ()=>{
 	})
 
 	it("should'n be able to access private routes when authenticated with a invalid token", async ()=>{
-		const testingUser = await factory.create('user')
+		await factory.create('user')
 
 		const response = await request(app)
 		.get('/user/')
@@ -85,27 +98,5 @@ describe('Authentication', ()=>{
 		.send()
 
 		expect(response.status).toBe(401)
-	})
-
-	it("should return a list of users when the route '/user/' is requested", async ()=>{
-		const testingUser = await factory.create('user')
-
-		const response = await request(app)
-		.get('/user/')
-		.set('auth', testingUser.generateToken())
-		.send()
-
-		expect(Array.isArray(response.body)).toBe(true)
-	})
-
-	it("should return an user on the first position of array, due previous insertion", async ()=>{
-		const testingUser = await factory.create('user')
-
-		const response = await request(app)
-		.get('/user/')
-		.set('auth', testingUser.generateToken())
-		.send()
-
-		expect(response.body[0]).toHaveProperty('id')
 	})
 })
