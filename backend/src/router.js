@@ -6,5 +6,10 @@ const path = require('path')
 
 routes.use('/', express.static(path.join(__dirname, '../build')))
 routes.post('/user/login', userController.login)
-routes.post('/user/new', userController.auth, userController.store)
+routes.get('/user', userController.auth, userController.list)
+routes.post('/user', userController.auth, userController.store)
+routes.put('/user', userController.auth, userController.change)
+routes.get('/country/', (request, response)=>{
+    return response.json([1])
+})
 module.exports = routes
