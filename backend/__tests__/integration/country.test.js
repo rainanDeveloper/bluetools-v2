@@ -22,6 +22,13 @@ describe('Country CRUD', ()=>{
     })
 
     it("Should return an error when the route '/country/' is requested with get method with invalid credentials", async ()=>{
-        
+        await factory.create('country')
+
+        const response = await request(app)
+        .get('/country/')
+        .set('auth', '123456')
+        .send()
+
+        expect(response.status).toBe(401)
     })
 })

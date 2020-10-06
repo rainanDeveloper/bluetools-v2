@@ -1,4 +1,3 @@
-const crypto = require('crypto')
 const {user} = require('../../app/models')
 module.exports = {
 	up: async () => {

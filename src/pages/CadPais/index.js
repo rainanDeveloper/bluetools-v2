@@ -9,7 +9,9 @@ function CadPais(){
 	const {countries, setCountries} = useState([])
 
 	useEffect(()=>{
-		api.get()
+		api.get('/country/').then(response=>{
+			setCountries(response.data)
+		})
 	}, [])
 
 	return (

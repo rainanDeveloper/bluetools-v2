@@ -1,15 +1,15 @@
 const express = require('express')
 const userController = require('./app/controllers/userController')
+const countryController = require('./app/controllers/countryController')
 const routes = express.Router()
 const path = require('path')
 
-
-routes.use('/', express.static(path.join(__dirname, '../build')))
+routes.use('/', express.static(path.join(__dirname, '../../build')))
+routes.use('/dashboard', express.static(path.join(__dirname, '../../build')))
+routes.use('/pais', express.static(path.join(__dirname, '../../build')))
 routes.post('/user/login', userController.login)
 routes.get('/user', userController.auth, userController.list)
 routes.post('/user', userController.auth, userController.store)
 routes.put('/user', userController.auth, userController.change)
-routes.get('/country/', (request, response)=>{
-    return response.json([1])
-})
+routes.get('/country/', userController.auth, countryController.list)
 module.exports = routes
