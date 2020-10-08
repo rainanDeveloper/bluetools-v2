@@ -12,3 +12,20 @@
     border: solid 1px var(--color-primary-dark);
     color: white
 }
+
+.htmlBluetoolsTable tbody:nth-child(even){
+    background-color: #ddd;
+}
+
+.htmlBluetoolsTable tbody tr:hover {
+    z-index: 10;
+    width: 100%;
+    background-color: #a3b8df;
+}
+
+.htmlBluetoolsTable tbody td {
+    font-size: 0.8em;
+    border-left: solid 1px #aaa;
+    border-right: solid 1px #aaa;
+    padding: 2px 3px;
+}

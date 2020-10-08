@@ -6,13 +6,19 @@ import api from '../../services/api'
 
 function CadPais(){
 	
-	const {countries, setCountries} = useState([])
+	const [countries, setCountries] = useState([])
+
+	const authToken = localStorage.getItem('authToken')
 
 	useEffect(()=>{
-		api.get('/country/').then(response=>{
+		api.get('/country/',{
+			headers:{
+				'auth': authToken
+			}
+		}).then(response=>{
 			setCountries(response.data)
 		})
-	}, [])
+	}, [setCountries,authToken])
 
 	return (
 		<>
@@ -29,7 +35,12 @@ function CadPais(){
 						<button className="color-primary">Imprimir</button>
 					</div>
 				</div>
-				<HtmlTable id="tblPais" tableTitles={["Código","Abreviação","Nome", "Moeda"]} tableData={countries}/>
+				<HtmlTable id="tblPais" tableTitles={[
+					{title: "Código", dataKey: "id"},
+					{title:"Abreviação", dataKey: "abbreviation"},
+					{title: "Nome", dataKey: 'name'},
+					{title:"Moeda", dataKey: 'currency'}
+					]} tableData={countries}/>
 			</div>
 		</>
 	)

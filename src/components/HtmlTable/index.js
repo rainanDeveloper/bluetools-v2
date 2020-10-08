@@ -7,17 +7,20 @@ function HtmlTable({id, tableData, tableTitles}){
 			<thead>
 				<tr className="color-primary">
 					{tableTitles&&tableTitles.map((title, index)=>{
-						return <th key={index}>{title}</th>
+						return <th key={index}>{title.title}</th>
 					})}
 				</tr>
 			</thead>
 			<tbody>
 				{tableData&&tableData.map((dataRow, index)=>{
-					const keyArray = Object.keys(dataRow)
 					return (
 					<tr key={index}>
-						{keyArray.map(key=>{
-							return <td key={key}>{dataRow[key]}</td>
+						{tableTitles.map(titleObj=>{
+							return (
+								<td key={titleObj.dataKey}>
+									{dataRow[titleObj.dataKey]}
+								</td>
+							)
 						})}
 					</tr>
 					)
