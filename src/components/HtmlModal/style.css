@@ -1,0 +1,36 @@
+.HtmlModalContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.HtmlModalContainer .HtmlModal {
+    border-radius: 5px;
+    max-width: 500px;
+    width: 40%;
+    overflow: hidden;
+    background-color: #ffffff;
+    max-height: 90%;
+    box-shadow: 0 0 10px #00000033;
+}
+
+.HtmlModalContainer .HtmlModal .titleModal {
+    display: flex;
+    font-size: 1.8em;
+    color: white;
+    padding: 10px 15px;
+    margin: 0;
+    height: 10%;
+    min-height: 60px;
+    align-items: center;
+}
+
+.HtmlModalContainer .HtmlModal .bodyModal {
+    height: 90%;
+    overflow-y: scroll;
+}

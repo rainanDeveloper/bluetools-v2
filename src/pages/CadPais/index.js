@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './style.css'
 import SupMenuAdmin from '../../components/SupMenuAdmin'
 import HtmlTable from '../../components/HtmlTable'
+import HtmlModal from '../../components/HtmlModal'
 import api from '../../services/api'
 
 function CadPais(){
@@ -20,6 +21,17 @@ function CadPais(){
 		})
 	}, [setCountries,authToken])
 
+	function editItem(){
+		const selectedCountry = countries.filter(country=>country.selected)[0]
+
+		if(selectedCountry){
+			const id = selectedCountry.id
+		}
+		else{
+			alert('Nenhum item selecionado!')
+		}
+	}
+
 	return (
 		<>
 			<SupMenuAdmin/>
@@ -31,7 +43,8 @@ function CadPais(){
 					</div>
 					<div className="utilityButtons">
 						<button className="color-primary">Novo</button>
-						<button className="color-primary">Editar</button>
+						<button onClick={editItem} className="color-primary">Editar</button>
+						<button className="color-primary">Exportar</button>
 						<button className="color-primary">Imprimir</button>
 					</div>
 				</div>
@@ -40,8 +53,13 @@ function CadPais(){
 					{title:"Abreviação", dataKey: "abbreviation"},
 					{title: "Nome", dataKey: 'name'},
 					{title:"Moeda", dataKey: 'currency'}
-					]} tableData={countries}/>
+					]} tableData={countries} selection={true} selectionCallback={items=>{
+						setCountries(items)
+					}}/>
 			</div>
+			<HtmlModal titleModal={`Cadastro de País`}>
+				<div>Teste</div>
+			</HtmlModal>
 		</>
 	)
 }
