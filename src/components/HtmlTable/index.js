@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-function HtmlTable({id, tableData, tableTitles, selection, selectionCallback}){
+function HtmlTable({id, tableData, tableTitles, selection, selectionCallback,itemDoubleClickCallback=(()=>{})}){
 	
 
 	function selectItem(idSelected){
@@ -32,7 +32,7 @@ function HtmlTable({id, tableData, tableTitles, selection, selectionCallback}){
 					return (
 					<tr className={dataRow.selected?'selected':''} key={index} onClick={(event)=>{
 						selectOnClick(event.target)
-					}}>
+					}} onDoubleClick={itemDoubleClickCallback}>
 						{selection?<td className="tableItemSelectorColumn">
 							<input name={`selectedItem${id}`} value={dataRow.id} onChange={(event)=>{
 								selectItem(event.target.value)

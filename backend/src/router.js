@@ -11,5 +11,6 @@ routes.post('/user/login', userController.login)
 routes.get('/user', userController.auth, userController.list)
 routes.post('/user', userController.auth, userController.store)
 routes.put('/user', userController.auth, userController.change)
+routes.post('/country/', userController.auth, countryController.store)
 routes.get('/country/', userController.auth, countryController.list)
 module.exports = routes

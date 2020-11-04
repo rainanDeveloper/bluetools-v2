@@ -162,3 +162,8 @@ button, .button {
 	flex-direction: column;
 	margin-top: 15px;
 }
+
+.input-group label {
+	margin: 5px;
+	font-weight: 500;
+}

@@ -1,0 +1,31 @@
+form#countryForm {
+	padding: 10px;
+}
+
+div.input-line {
+	display: grid;
+	grid-gap: 10px;
+	align-items: end;
+}
+
+div.input-line#one {
+	grid-template-columns: 90px 1fr;
+}
+
+div.input-line#two {
+	grid-template-columns: 130px 1fr 2fr;
+}
+
+div.input-line .input-group {
+	min-width: 74px;
+	margin: 0;
+	padding: 0;
+}
+
+button.btnSave {
+	position: absolute;
+	bottom: 10px;
+	margin-right: 14px;
+	right: 10px;
+	color: white;
+}
