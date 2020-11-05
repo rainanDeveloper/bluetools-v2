@@ -4,24 +4,32 @@ import SupMenuAdmin from '../../components/SupMenuAdmin'
 import FormCadPais from './FormCadPais'
 import HtmlTable from '../../components/HtmlTable'
 import HtmlModal from '../../components/HtmlModal'
+import ToastDisplay from '../../components/ToastDisplay'
 import api from '../../services/api'
 
 function CadPais(){
 	
 	const [countries, setCountries] = useState([])
 	const [contryEdit, setCountryEdit] = useState([])
+	const [searchTerm, setSearchTerm] =  useState('')
+	const [alert, setAlert] =  useState('')
 
 	const authToken = localStorage.getItem('authToken')
 
 	useEffect(()=>{
-		api.get('/country/',{
+		var query = ''
+		if(searchTerm){
+			query+=`?searchTerm=${searchTerm}`
+		}
+
+		api.get(`/country/${query}`,{
 			headers:{
 				'auth': authToken
 			}
 		}).then(response=>{
 			setCountries(response.data)
 		})
-	}, [setCountries,authToken])
+	}, [setCountries,authToken, searchTerm])
 
 	function openModal(){
 		const modal = document.querySelector('#modalPais')
@@ -52,6 +60,22 @@ function CadPais(){
 		openModal()
 	}
 
+	function deleteItem(id){
+		if(window.confirm(`Deseja realmente excluir país ${id}?`)){
+			api.delete(`/country/${id}`,{
+				headers:{
+					'auth': authToken
+				}
+			}).then(()=>{
+				setCountries(countries.filter(c=>(parseInt(c.id)!=parseInt(id))))
+				setAlert(`País ${id} deletado com sucesso!`)
+			}).catch(error=>{
+				setAlert(`Erro ao deletar país ${id}`)
+			})
+		}
+		
+	}
+
 	function updateCountryOnList(country){
 		const findedCountry = countries.filter(c=>c.id===country.id)
 		if(findedCountry.length>0){
@@ -72,6 +96,7 @@ function CadPais(){
 	function saveCallback(country){
 		updateCountryOnList(country)
 		closeModal()
+		setAlert(`País ${country.id} salvo com sucesso!`)
 	}
 
 	return (
@@ -81,7 +106,7 @@ function CadPais(){
 				<h1 className="titleListTable">Países</h1>
 				<div className="utility">
 					<div className="searchArea">
-						<input type="text" id="searchInput" placeholder="Buscar..."/>
+						<input type="text" id="searchInput" value={searchTerm} onChange={event=>setSearchTerm(event.target.value)} placeholder="Buscar..."/>
 					</div>
 					<div className="utilityButtons">
 						<button onClick={newItem} className="color-primary">Novo</button>
@@ -97,11 +122,12 @@ function CadPais(){
 					{title:"Moeda", dataKey: 'currency'}
 					]} tableData={countries} selection={true} selectionCallback={items=>{
 						setCountries(items)
-					}} itemDoubleClickCallback={editItem}/>
+					}} itemDoubleClickCallback={editItem} delectionCallback={deleteItem}/>
 			</div>
 			<HtmlModal titleModal={`Cadastro de País`} modalId="modalPais">
 				<FormCadPais country={contryEdit} saveCallback={saveCallback}/>
 			</HtmlModal>
+			<ToastDisplay>{alert}</ToastDisplay>
 		</>
 	)
 }

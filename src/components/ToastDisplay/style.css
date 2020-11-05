@@ -1,0 +1,23 @@
+.defaultToastDisplay {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    z-index: 100;
+    opacity: 0%;
+}
+
+.defaultToastDisplay.active {
+    display: block;
+    opacity: 100%;
+}
+
+.defaultToastDisplay.fadeOut {
+    display: block;
+    opacity: 0%;
+    transition: 2s;
+}

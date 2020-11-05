@@ -12,5 +12,6 @@ routes.get('/user', userController.auth, userController.list)
 routes.post('/user', userController.auth, userController.store)
 routes.put('/user', userController.auth, userController.change)
 routes.post('/country/', userController.auth, countryController.store)
+routes.delete('/country/:id', userController.auth, countryController.delete)
 routes.get('/country/', userController.auth, countryController.list)
 module.exports = routes

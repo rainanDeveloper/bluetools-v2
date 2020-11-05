@@ -35,3 +35,13 @@ td.tableItemSelectorColumn, th.tableHeaderSelectorColumn {
 .htmlBluetoolsTable tbody tr.selected {
 	background-color: #bbccec;
 }
+
+.htmlBluetoolsTable tbody td.deletionIconCol, .htmlBluetoolsTable th.deletionIconCol {
+	width: 30px;
+}
+
+.deletionIconCol svg.deleteIconBtn {
+	display: flex;
+	cursor: pointer;
+	margin: auto;
+}

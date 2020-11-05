@@ -1,7 +1,8 @@
 import React from 'react'
 import './style.css'
+import {FiXCircle} from 'react-icons/fi'
 
-function HtmlTable({id, tableData, tableTitles, selection, selectionCallback,itemDoubleClickCallback=(()=>{})}){
+function HtmlTable({id, tableData, tableTitles, selection, selectionCallback,itemDoubleClickCallback=(()=>{}),delectionCallback}){
 	
 
 	function selectItem(idSelected){
@@ -17,6 +18,15 @@ function HtmlTable({id, tableData, tableTitles, selection, selectionCallback,ite
 		selectItem(checkbox.value)
 	}
 
+	function selectAndDelete(event){
+		event.preventDefault()
+		const id = event.target.closest('tr').querySelector('td.tableItemSelectorColumn input').value
+
+		if(id){
+			delectionCallback(id) 
+		}
+	}
+
 	return (
 		<table id={id} className="htmlBluetoolsTable">
 			<thead>
@@ -25,6 +35,7 @@ function HtmlTable({id, tableData, tableTitles, selection, selectionCallback,ite
 					{tableTitles&&tableTitles.map((title, index)=>{
 						return <th key={index}>{title.title}</th>
 					})}
+					{delectionCallback?<th className="deletionIconCol"></th>:<></>}
 				</tr>
 			</thead>
 			<tbody>
@@ -38,13 +49,16 @@ function HtmlTable({id, tableData, tableTitles, selection, selectionCallback,ite
 								selectItem(event.target.value)
 							}} type="radio"/>
 						</td>:<></>}
-						{tableTitles.map(titleObj=>{
+						{tableTitles.map((titleObj, iTtl)=>{
 							return (
 								<td key={titleObj.dataKey}>
 									{dataRow[titleObj.dataKey]}
 								</td>
 							)
 						})}
+						{delectionCallback?<td className="deletionIconCol">
+							<FiXCircle className="deleteIconBtn" onClick={selectAndDelete} color="#db160f" size={16}/>
+						</td>:<></>}
 					</tr>
 					)
 				})}

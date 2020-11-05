@@ -1,3 +1,4 @@
+const {Op} = require('sequelize')
 const {country} = require('../models')
 const {countryDistrict} = require('../models')
 const {city} = require('../models')
@@ -46,9 +47,58 @@ module.exports = {
 		}
 
 	},
+	async delete(request,response){
+		const {id} = request.params
+
+		try{
+			const countryToDelete = await country.findByPk(id)
+
+			if(countryToDelete){
+				await countryToDelete.destroy()
+
+				return response.json({
+					message: `Country ${id} successfully deleted!`
+				})
+			}
+			else{
+				return response.status(404).json({
+					message: `Unable to find country with id ${id}`
+				})
+			}
+		}
+		catch(error){
+			return response.status(500).json({
+				message: `Internal server error!`
+			})
+		}
+	},
 	async list(request,response){
+
+		const {searchTerm} = request.query
+
 		try{
 			const countries = await country.findAll({
+				where:{
+					...(searchTerm?{
+						[Op.or]: [
+							{
+								abbreviation: {
+									[Op.like]: `%${searchTerm}%`
+								}
+							},
+							{
+								name: {
+									[Op.like]: `%${searchTerm}%`
+								}
+							},
+							{
+								currency: {
+									[Op.like]: `%${searchTerm}%`
+								}
+							}
+						]
+					}:{})
+				},
 				include:[
 					{
 						model:  countryDistrict,
