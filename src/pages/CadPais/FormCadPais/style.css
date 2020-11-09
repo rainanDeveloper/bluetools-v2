@@ -8,11 +8,11 @@ div.input-line {
 	align-items: end;
 }
 
-div.input-line#one {
+div.input-line#lineOneCountry {
 	grid-template-columns: 90px 1fr;
 }
 
-div.input-line#two {
+div.input-line#lineTwoCountry {
 	grid-template-columns: 130px 1fr 2fr;
 }
 

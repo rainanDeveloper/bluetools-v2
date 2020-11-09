@@ -102,10 +102,11 @@ html, body, #root {
 	background-color: #00000044;
 }
 
-input {
+input, select {
 	padding: 8px 10px;
 	border: solid 1px #ccc;
 	border-radius: 5px;
+	background: white;
 }
 
 button, .button {

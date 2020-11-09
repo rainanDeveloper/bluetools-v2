@@ -18,6 +18,8 @@ describe('User CRUD', ()=>{
 		.send()
 
 		expect(Array.isArray(response.body)).toBe(true)
+		
+		await testingUser.destroy()
 	})
 
 	it("should return an user on the first position of array, due previous insertion", async ()=>{
@@ -29,6 +31,8 @@ describe('User CRUD', ()=>{
 		.send()
 
 		expect(response.body[0]).toHaveProperty('id')
+		
+		await testingUser.destroy()
 	})
 	
 	it("should return a response with status 200(ok) when the route '/user/' is posted and the data of user is sended", async ()=>{
@@ -48,6 +52,8 @@ describe('User CRUD', ()=>{
 		})
 
 		expect(response.status).toBe(200)
+		
+		await testingUser.destroy()
 	})
 
 	it("should return a response with status 400(bad request) when the route '/user/' is posted and the data of user is not sended", async ()=>{
@@ -59,6 +65,8 @@ describe('User CRUD', ()=>{
 		.send({})
 
 		expect(response.status).toBe(400)
+
+		await testingUser.destroy()
 	})
 
 	it("should return a response with status 200(ok) when the route '/user/' is putted with valid id", async ()=>{
@@ -72,6 +80,8 @@ describe('User CRUD', ()=>{
 		})
 
 		expect(response.status).toBe(200)
+
+		await testingUser.destroy()
 	})
 
 	it("should return a response with status 400(bad request) when the route '/user/' is putted without a id", async ()=>{
@@ -83,6 +93,8 @@ describe('User CRUD', ()=>{
 		.send({})
 
 		expect(response.status).toBe(400)
+		
+		await testingUser.destroy()
 	})
 
 	it("should return a response with status 400(bad request) when the route '/user/' is putted with a invalid id", async ()=>{
@@ -96,5 +108,7 @@ describe('User CRUD', ()=>{
 		})
 
 		expect(response.status).toBe(400)
+	
+		await testingUser.destroy()
 	})
 })

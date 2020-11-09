@@ -10,9 +10,10 @@ import api from '../../services/api'
 function CadPais(){
 	
 	const [countries, setCountries] = useState([])
-	const [contryEdit, setCountryEdit] = useState([])
+	const [countryEdit, setCountryEdit] = useState(null)
 	const [searchTerm, setSearchTerm] =  useState('')
 	const [alert, setAlert] =  useState('')
+	const [alertChanger, setAlertChanger] = useState(0)
 
 	const authToken = localStorage.getItem('authToken')
 
@@ -67,10 +68,12 @@ function CadPais(){
 					'auth': authToken
 				}
 			}).then(()=>{
-				setCountries(countries.filter(c=>(parseInt(c.id)!=parseInt(id))))
+				setCountries(countries.filter(c=>(parseInt(c.id)!==parseInt(id))))
 				setAlert(`País ${id} deletado com sucesso!`)
+				setAlertChanger(alertChanger+1)
 			}).catch(error=>{
 				setAlert(`Erro ao deletar país ${id}`)
+				setAlertChanger(alertChanger+1)
 			})
 		}
 		
@@ -96,7 +99,8 @@ function CadPais(){
 	function saveCallback(country){
 		updateCountryOnList(country)
 		closeModal()
-		setAlert(`País ${country.id} salvo com sucesso!`)
+		setAlert(`País ${country.name}(${country.id}) salvo com sucesso!`)
+		setAlertChanger(alertChanger+1)
 	}
 
 	return (
@@ -125,9 +129,9 @@ function CadPais(){
 					}} itemDoubleClickCallback={editItem} delectionCallback={deleteItem}/>
 			</div>
 			<HtmlModal titleModal={`Cadastro de País`} modalId="modalPais">
-				<FormCadPais country={contryEdit} saveCallback={saveCallback}/>
+				<FormCadPais country={countryEdit} saveCallback={saveCallback}/>
 			</HtmlModal>
-			<ToastDisplay>{alert}</ToastDisplay>
+			<ToastDisplay changer={alertChanger}>{alert}</ToastDisplay>
 		</>
 	)
 }

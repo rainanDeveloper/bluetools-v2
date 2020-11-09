@@ -1,33 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import './style.css'
 
-function ToastDisplay({children, fontColor="white",colorClass="color-primary-shade"}){
+function ToastDisplay({children, fontColor="white",colorClass="color-primary-shade",toastId='toast1',changer}){
 
-    const [active, setActive] = useState('')
+	const [visible, setVisible] = useState(false)
+	const [invisible, setInvisible] = useState(true)
 
-    useEffect(()=>{
-        if(children.length>0){
-            fadeEffect()
-        }
-    }, [children])
+	useEffect(()=>{
+		if(children.length>0){
+			setVisible(true)
+			setInvisible(false)
 
-    function fadeEffect(){
-        setActive('active')
+			setTimeout(()=>{
+				setVisible(false)
+			}, 2000)
+			
+			setTimeout(()=>{
+				setInvisible(true)
+			}, 3000)
+		}
+	}, [children, changer])
 
-        setTimeout(()=>{
-            setActive('fadeOut')
-        }, 2000)
-
-        setTimeout(()=>{
-            setActive('')
-        }, 3000)
-    }
-
-    return (
-        <div className={`defaultToastDisplay ${colorClass} ${active}`} style={{color: fontColor}}>
-            {children}
-        </div>
-    )
+	return (
+		<div className={`defaultToastDisplay ${colorClass} ${visible?'active':'fadeOut'} ${invisible?'notShowed':''}`} id={toastId} style={{color: fontColor}}>
+			{children}
+		</div>
+	)
 }
 
 export default ToastDisplay

@@ -10,9 +10,9 @@ describe('Country CRUD', ()=>{
         await truncate()
     })
 
-    it('should return a list od countries when the route "/country/" is requested with get method with a valid JWT token', async ()=>{
+    it('should return a list of countries when the route "/country/" is requested with get method and a valid JWT token', async ()=>{
         const testingUser = await factory.create('user')
-        await factory.create('country')
+        const countryCreated = await factory.create('country')
 
         const response = await request(app)
         .get('/country/')
@@ -21,11 +21,12 @@ describe('Country CRUD', ()=>{
 
         expect(response.status).toBe(200)
         expect(Array.isArray(response.body)).toBe(true)
-        expect(typeof(response.body[0])).toBe('object')
+
+        await countryCreated.destroy()
     })
 
-    it("Should return an error when the route '/country/' is requested with get method with invalid credentials", async ()=>{
-        await factory.create('country')
+    it("Should return an error when the route '/country/' is requested with get method and invalid credentials", async ()=>{
+        const countryCreated = await factory.create('country')
 
         const response = await request(app)
         .get('/country/')
@@ -33,6 +34,8 @@ describe('Country CRUD', ()=>{
         .send()
 
         expect(response.status).toBe(401)
+
+        await countryCreated.destroy()
     })
 
     it("Should return an object when the route '/country/' is requested with post method and valid credentials", async ()=>{
@@ -50,6 +53,8 @@ describe('Country CRUD', ()=>{
 
         expect(response.status).toBe(200)
         expect(typeof(response.body)).toBe('object')
+
+        await testingUser.destroy()
     })
 
     it("Should return an object when the route '/country/' is requested with post method and valid credentials and id of an existent country", async ()=>{
@@ -88,6 +93,8 @@ describe('Country CRUD', ()=>{
 
         expect(response.status).toBe(200)
         expect(deletedCountry).toBe(null)
+        
+        await testingUser.destroy()
     })
 
     it("Should not delete a country when the route 'country' is requested with an invalid id", async ()=>{
@@ -98,5 +105,6 @@ describe('Country CRUD', ()=>{
         .set('auth', testingUser.generateToken())
 
         expect(response.status).toBe(404)
+        await testingUser.destroy()
     })
 })
