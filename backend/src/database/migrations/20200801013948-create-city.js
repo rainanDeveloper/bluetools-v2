@@ -19,6 +19,7 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: false,
 				defaultValue: 1,
+				onDelete: 'CASCADE',
 				references: { model: 'country_districts', key: 'id'}
 			},
 			countryId: {

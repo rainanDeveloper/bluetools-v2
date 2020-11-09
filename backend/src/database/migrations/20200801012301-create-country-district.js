@@ -18,8 +18,9 @@ module.exports = {
       },
       countryId: {
         type: DataTypes.INTEGER,
-				defaultValue: 1,
-        references: { model: 'countries', key: 'id' }
+        defaultValue: 1,
+        onDelete: 'CASCADE',
+        references: { model: 'countries', key: 'id'}
       },
       createdAt: {
         allowNull: false,
