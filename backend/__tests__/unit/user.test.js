@@ -1,4 +1,3 @@
-const {user} = require('../../src/app/models')
 const factory = require('../factories')
 const truncate = require('../utils/truncate')
 const crypto = require('crypto')

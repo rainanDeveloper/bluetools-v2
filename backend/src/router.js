@@ -24,4 +24,6 @@ routes.delete('/country/:id', userController.auth, countryController.delete)
 routes.get('/countryDistrict/', userController.auth, countryDistrictController.list)
 routes.post('/countryDistrict/', userController.auth, countryDistrictController.store)
 routes.delete('/countryDistrict/:id', userController.auth, countryDistrictController.delete)
+
+
 module.exports = routes

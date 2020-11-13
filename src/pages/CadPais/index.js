@@ -5,6 +5,7 @@ import FormCadPais from './FormCadPais'
 import HtmlTable from '../../components/HtmlTable'
 import HtmlModal from '../../components/HtmlModal'
 import ToastDisplay from '../../components/ToastDisplay'
+import PDFPrintTable from '../../functions/PdfPrintTable'
 import api from '../../services/api'
 
 function CadPais(){
@@ -116,7 +117,17 @@ function CadPais(){
 						<button onClick={newItem} className="color-primary">Novo</button>
 						<button onClick={editItem} className="color-primary">Editar</button>
 						<button className="color-primary">Exportar</button>
-						<button className="color-primary">Imprimir</button>
+						<button onClick={()=>{
+							PDFPrintTable('Países', 10, 10, {
+								columns: [
+									{ header: 'Código', dataKey: 'id' },
+									{ header: 'Abreviação', dataKey: 'abbreviation' },
+									{ header: 'Nome', dataKey: 'name' },
+									{ header: 'Moeda', dataKey: 'currency' }
+								],
+								body: countries
+							})
+						}} className="color-primary">Imprimir</button>
 					</div>
 				</div>
 				<HtmlTable id="tblPais" tableTitles={[
