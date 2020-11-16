@@ -78,7 +78,7 @@ function FormCadUf({district, saveCallback=((d)=>{})}){
 						<select name="countries" required={true} id="country" value={country} onChange={event=>setCountry(event.target.value)}>
 							<option value={0}>Selecione um país</option>
 							{countries.map(c=>{
-								return <option value={c.id}>{c.name}</option>
+								return <option key={c.id} value={c.id}>{c.name}</option>
 							})}
 						</select>
 					</div>

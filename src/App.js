@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import DashBoard from './pages/DashBoard'
 import CadPais from './pages/CadPais'
 import CadUf from './pages/CadUf'
+import CadCity from './pages/CadCity'
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<Route path="/dashboard" exact component={DashBoard}/>
 				<Route path="/pais" exact component={CadPais}/>
 				<Route path="/ufs" exact component={CadUf}/>
+				<Route path="/cidades" exact component={CadCity}/>
 			</Switch>
 		</BrowserRouter>
 	);

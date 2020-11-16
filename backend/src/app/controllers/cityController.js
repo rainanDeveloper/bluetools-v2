@@ -2,7 +2,6 @@ const {Op} = require('sequelize')
 const {country} = require('../models')
 const {countryDistrict} = require('../models')
 const {city} = require('../models')
-const { delete } = require('./countryDistrictController')
 
 module.exports = {
     async store(request, response){

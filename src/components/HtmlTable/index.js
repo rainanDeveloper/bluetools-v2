@@ -13,9 +13,11 @@ function HtmlTable({id, tableData, tableTitles, selection, selectionCallback,ite
 	}
 
 	function selectOnClick(target){
-		const checkbox = target.closest('tr').querySelector('td.tableItemSelectorColumn input')
-		checkbox.checked=true
-		selectItem(checkbox.value)
+		if(selection){
+			const checkbox = target.closest('tr').querySelector('td.tableItemSelectorColumn input')
+			checkbox.checked=true
+			selectItem(checkbox.value)
+		}
 	}
 
 	function selectAndDelete(event){
@@ -51,7 +53,7 @@ function HtmlTable({id, tableData, tableTitles, selection, selectionCallback,ite
 						</td>:<></>}
 						{tableTitles.map((titleObj, iTtl)=>{
 							return (
-								<td key={titleObj.dataKey}>
+								<td key={dataRow.id+"_"+titleObj.dataKey}>
 									{dataRow[titleObj.dataKey]}
 								</td>
 							)

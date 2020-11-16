@@ -2,6 +2,7 @@ const express = require('express')
 const userController = require('./app/controllers/userController')
 const countryController = require('./app/controllers/countryController')
 const countryDistrictController = require('./app/controllers/countryDistrictController')
+const cityController = require('./app/controllers/cityController')
 const routes = express.Router()
 const path = require('path')
 
@@ -24,6 +25,8 @@ routes.delete('/country/:id', userController.auth, countryController.delete)
 routes.get('/countryDistrict/', userController.auth, countryDistrictController.list)
 routes.post('/countryDistrict/', userController.auth, countryDistrictController.store)
 routes.delete('/countryDistrict/:id', userController.auth, countryDistrictController.delete)
-
+routes.get('/city/', userController.auth, cityController.list)
+routes.post('/city/', userController.auth, cityController.store)
+routes.delete('/city/:id', userController.auth, cityController.delete)
 
 module.exports = routes
