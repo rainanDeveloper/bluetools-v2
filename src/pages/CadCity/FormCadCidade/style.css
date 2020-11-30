@@ -1,0 +1,7 @@
+form.formCity {
+    padding: 10px;
+}
+
+div.input-line#lineOneCity {
+	grid-template-columns: 90px 1fr;
+}

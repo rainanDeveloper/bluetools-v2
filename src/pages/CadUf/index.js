@@ -132,7 +132,8 @@ function CadUf(){
 				})} selection={true} selectionCallback={items=>{
 					setDistricts(items)
 				}}
-				delectionCallback={deleteItem}
+				itemDoubleClickCallback={editItem}
+				delectionCallback={deleteItem}				
 				/>
 				<HtmlModal titleModal={`Cadastro de UF`} modalId="modalUf">
 					<FormCadUf district={districtEdit} saveCallback={saveCallback}/>

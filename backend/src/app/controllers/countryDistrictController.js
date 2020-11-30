@@ -62,7 +62,7 @@ module.exports = {
 
 	},
 	async list(request, response){
-		const {searchTerm} = request.query
+		const {searchTerm, countryId} = request.query
 
 		try {
 			const countryDistricts = await countryDistrict.findAll({
@@ -79,7 +79,10 @@ module.exports = {
 									[Op.like]: `%${searchTerm}%`
 								}
 							}
-						]
+						],
+					}:{}),
+					...(country?{
+						countryId
 					}:{})
 				},
 				include: [
