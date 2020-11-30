@@ -1,0 +1,13 @@
+form#districtForm {
+    margin: 10px;
+}
+
+div.input-line#lineOneUf {
+    display: grid;
+    grid-template-columns: 75px 1fr;
+}
+
+div.input-line#lineTwoUf {
+    display: grid;
+    grid-template-columns: 248px 1fr 1fr;
+}

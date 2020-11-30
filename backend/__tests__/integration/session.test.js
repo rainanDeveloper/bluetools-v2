@@ -9,15 +9,16 @@ describe('Authentication', ()=>{
 		await truncate()
 	})
 	it('should authenticate when passed valid credentials', async ()=>{
+		const passTest = 'rightpassword'
 		const testingUser = await factory.create('user', {
-			password_unhashed: 'rightpassword'
+			password_unhashed: passTest
 		})
 
 		const response = await request(app)
 		.post('/user/login')
 		.send({
 			login: testingUser.login,
-			password: 'rightpassword'
+			password: passTest
 		})
 
 		expect(response.status).toBe(200)

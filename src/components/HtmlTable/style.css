@@ -1,14 +1,47 @@
 .htmlBluetoolsTable {
-    border: solid 1px #ccc;
-    border-collapse: collapse;
-    width: 100%;
+	border: solid 1px #ccc;
+	border-collapse: collapse;
+	width: 100%;
 }
 
 .htmlBluetoolsTable thead {
-    border: solid 1px var(--color-primary-dark)
+	border: solid 1px var(--color-primary-dark)
 }
 
 .htmlBluetoolsTable thead th {
-    border: solid 1px var(--color-primary-dark);
-    color: white
+	border: solid 1px var(--color-primary-dark);
+	color: white
+}
+
+.htmlBluetoolsTable tbody tr:nth-child(even){
+	background-color: #ddd;
+}
+
+.htmlBluetoolsTable tbody tr:hover {
+	background-color: #bbccec;
+}
+
+.htmlBluetoolsTable tbody td {
+	font-size: 0.8em;
+	border-left: solid 1px #aaa;
+	border-right: solid 1px #aaa;
+	padding: 2px 3px;
+}
+
+td.tableItemSelectorColumn, th.tableHeaderSelectorColumn {
+	display: none;
+}
+
+.htmlBluetoolsTable tbody tr.selected {
+	background-color: #bbccec;
+}
+
+.htmlBluetoolsTable tbody td.deletionIconCol, .htmlBluetoolsTable th.deletionIconCol {
+	width: 30px;
+}
+
+.deletionIconCol svg.deleteIconBtn {
+	display: flex;
+	cursor: pointer;
+	margin: auto;
 }

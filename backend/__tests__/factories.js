@@ -1,7 +1,6 @@
 const {factory} = require('factory-girl')
 const faker = require('faker')
-const {user} = require('../src/app/models')
-const {country} = require('../src/app/models')
+const {user, country, countryDistrict, city} = require('../src/app/models')
 
 factory.define('user', user, {
 	login: faker.internet.userName(),
@@ -18,6 +17,20 @@ factory.define('country', country, {
 	abbreviation: faker.address.countryCode(),
 	name: faker.address.country(),
 	currency: faker.finance.currencyCode()
+})
+
+factory.define('country_district', countryDistrict, {
+	code: faker.random.number(2).toString().padStart(2,'0'),
+	abbreviation: faker.address.stateAbbr(),
+	name: faker.address.state(),
+	countryId: faker.random.number()
+})
+
+factory.define('city', city, {
+	code: faker.random.number(7).toString().padStart(7,'0'),
+	name: faker.address.city(),
+	countryId: faker.random.number(),
+	country_districtId: faker.random.number()
 })
 
 module.exports=factory
