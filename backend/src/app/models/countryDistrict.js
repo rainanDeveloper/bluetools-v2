@@ -1,5 +1,5 @@
 const {
-  Model
+	Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class country_district extends Model {

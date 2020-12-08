@@ -8,7 +8,7 @@ import ToastDisplay from '../../components/ToastDisplay'
 import PDFPrintTable from '../../functions/PdfPrintTable'
 import api from '../../services/api'
 
-function CadPais(){
+function CadCountry(){
 	
 	const [countries, setCountries] = useState([])
 	const [countryEdit, setCountryEdit] = useState(null)
@@ -147,4 +147,4 @@ function CadPais(){
 	)
 }
 
-export default CadPais
+export default CadCountry

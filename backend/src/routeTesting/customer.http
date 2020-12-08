@@ -1,0 +1,16 @@
+GET http://localhost:3333/customer/
+auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA3MjcyMDIwfQ.arJtFTMDTqo8UUiMV2avfbxK0-D5cXaAp0XhSzv4h-M
+
+### Post customers
+POST http://localhost:3333/customer/
+auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA3MjcyMDIwfQ.arJtFTMDTqo8UUiMV2avfbxK0-D5cXaAp0XhSzv4h-M
+Content-Type: application/json
+
+{
+	"id":4,
+	"telephone": "71999683560"
+}
+
+### Delete customer
+DELETE http://localhost:3333/customer/3
+auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA3MjcyMDIwfQ.arJtFTMDTqo8UUiMV2avfbxK0-D5cXaAp0XhSzv4h-M

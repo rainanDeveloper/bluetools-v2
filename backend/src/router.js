@@ -3,6 +3,7 @@ const userController = require('./app/controllers/userController')
 const countryController = require('./app/controllers/countryController')
 const countryDistrictController = require('./app/controllers/countryDistrictController')
 const cityController = require('./app/controllers/cityController')
+const customerController = require('./app/controllers/customerController')
 const routes = express.Router()
 const path = require('path')
 
@@ -12,6 +13,7 @@ routes.use('/', express.static(path.join(__dirname, '../../build')))
 routes.use('/dashboard', express.static(path.join(__dirname, '../../build')))
 routes.use('/pais', express.static(path.join(__dirname, '../../build')))
 routes.use('/ufs', express.static(path.join(__dirname, '../../build')))
+routes.use('/cidades', express.static(path.join(__dirname, '../../build')))
 
 // Api
 
@@ -28,5 +30,8 @@ routes.delete('/countryDistrict/:id', userController.auth, countryDistrictContro
 routes.get('/city/', userController.auth, cityController.list)
 routes.post('/city/', userController.auth, cityController.store)
 routes.delete('/city/:id', userController.auth, cityController.delete)
+routes.get('/customer/', userController.auth, customerController.list)
+routes.post('/customer/', userController.auth, customerController.store)
+routes.delete('/customer/:id', userController.auth, customerController.delete)
 
 module.exports = routes

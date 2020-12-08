@@ -1,7 +1,5 @@
 const {Op} = require('sequelize')
-const {country} = require('../models')
-const {countryDistrict} = require('../models')
-const {city} = require('../models')
+const {country, countryDistrict, city} = require('../models')
 
 
 module.exports = {
@@ -81,7 +79,7 @@ module.exports = {
 							}
 						],
 					}:{}),
-					...(country?{
+					...(countryId?{
 						countryId
 					}:{})
 				},
