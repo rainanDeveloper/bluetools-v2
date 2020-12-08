@@ -7,8 +7,17 @@ auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA3MjcyMDIwfQ.ar
 Content-Type: application/json
 
 {
-	"id":4,
-	"telephone": "71999683560"
+	"name": "Giovanni Murilo Marcos da Paz",
+	"email": "giovannimurilomarcosdapaz__giovannimurilomarcosdapaz@iesa.com.br",
+	"address": "Caminho Três, Nº 656",
+	"birth_date": "1999-03-03",
+	"cep": "42803090",
+	"cityId": 4,
+	"countryId": 1,
+	"country_districtId": 2,
+	"cpf": "91757075518",
+	"telephone": "71993500917",
+	"status": 0
 }
 
 ### Delete customer

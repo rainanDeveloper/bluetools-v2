@@ -3,6 +3,8 @@ import './style.css'
 import {cpfMask, phoneMask, cepMask, dateMask} from '../../functions/Masks/'
 import SupMenuAdmin from '../../components/SupMenuAdmin'
 import HtmlTable from '../../components/HtmlTable'
+import ToastDisplay from '../../components/ToastDisplay'
+import PDFPrintTable from '../../functions/PdfPrintTable'
 
 import {FiSearch} from 'react-icons/fi'
 import api from '../../services/api'
@@ -11,6 +13,9 @@ function CadCustomer(){
 
 	const [customers, setCustomers] = useState([])
 	const [searchTerm, setSearchTerm] =  useState('')
+
+	const [alert, setAlert] =  useState('')
+	const [alertChanger, setAlertChanger] = useState(0)
 
 	const authToken = localStorage.getItem('authToken')
 
@@ -28,6 +33,18 @@ function CadCustomer(){
 			setCustomers(response.data)
 		})
 	}, [setCustomers,authToken, searchTerm])
+
+	function deleteItem(id){
+		api.delete(`/customer/${id}`, {
+			headers: {
+				auth: authToken
+			}
+		}).then(()=>{
+			setCustomers(customers.filter(c=>parseInt(c.id)!==parseInt(id)))
+			setAlert(`Cliente ${id} deletado com sucesso!`)
+			setAlertChanger(alertChanger+1)
+		})
+	}
 
 	return (
 	<>
@@ -64,8 +81,9 @@ function CadCustomer(){
 						return c
 					})} selection={true} selectionCallback={items=>{
 						setCustomers(items)
-					}}/>
+					}} delectionCallback={deleteItem}/>
 		</div>
+		<ToastDisplay changer={alertChanger}>{alert}</ToastDisplay>
 	</>
 	)
 }
