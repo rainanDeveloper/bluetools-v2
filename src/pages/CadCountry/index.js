@@ -12,7 +12,7 @@ function CadCountry(){
 	
 	const [countries, setCountries] = useState([])
 	const [countryEdit, setCountryEdit] = useState(null)
-	const [searchTerm, setSearchTerm] =  useState('')
+	const [q, setQ] =  useState('')
 	const [alert, setAlert] =  useState('')
 	const [alertChanger, setAlertChanger] = useState(0)
 
@@ -20,8 +20,8 @@ function CadCountry(){
 
 	useEffect(()=>{
 		var query = ''
-		if(searchTerm){
-			query+=`?searchTerm=${searchTerm}`
+		if(q){
+			query+=`?q=${q}`
 		}
 
 		api.get(`/country/${query}`,{
@@ -31,7 +31,7 @@ function CadCountry(){
 		}).then(response=>{
 			setCountries(response.data)
 		})
-	}, [setCountries,authToken, searchTerm])
+	}, [setCountries,authToken, q])
 
 	function openModal(){
 		const modal = document.querySelector('#modalPais')
@@ -44,7 +44,7 @@ function CadCountry(){
 	}
 
 	function editItem(){
-		const selectedCountry = countries.filter(country=>country.selected)[0]
+		const selectedCountry = countries.find(country=>country.selected)
 
 		setCountryEdit(selectedCountry)
 
@@ -111,7 +111,7 @@ function CadCountry(){
 				<h1 className="titleListTable">Países</h1>
 				<div className="utility">
 					<div className="searchArea">
-						<input type="text" id="searchInput" value={searchTerm} onChange={event=>setSearchTerm(event.target.value)} placeholder="Buscar..."/>
+						<input type="text" id="searchInput" value={q} onChange={event=>setQ(event.target.value)} placeholder="Buscar..."/>
 					</div>
 					<div className="utilityButtons">
 						<button onClick={newItem} className="color-primary">Novo</button>

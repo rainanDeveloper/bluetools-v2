@@ -89,7 +89,7 @@ module.exports = {
 	},
 	async list(request,response){
 		//Get search params and list all users matching the search elements
-		const {searchTerm,cityId,country_districtId,countryId,birthDateStart,birthDateEnd,cadDateStart,cadDateEnd} = request.query
+		const {q,cityId,country_districtId,countryId,birthDateStart,birthDateEnd,cadDateStart,cadDateEnd} = request.query
 
 		//Creates the search object only with filled query params
 
@@ -116,9 +116,9 @@ module.exports = {
 			...(cityId?{cityId}:{}),
 			...(country_districtId?{country_districtId}:{}),
 			...(countryId?{countryId}:{}),
-			...(searchTerm?{
+			...(q?{
 				name: {
-					[Op.like]: `%${searchTerm}%`
+					[Op.like]: `%${q}%`
 				}
 			}:{})
 		}

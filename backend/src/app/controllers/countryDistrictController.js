@@ -60,21 +60,21 @@ module.exports = {
 
 	},
 	async list(request, response){
-		const {searchTerm, countryId} = request.query
+		const {q, countryId} = request.query
 
 		try {
 			const countryDistricts = await countryDistrict.findAll({
 				where: {
-					...(searchTerm?{
+					...(q?{
 						[Op.or]: [
 							{
 								abbreviation: {
-									[Op.like]: `%${searchTerm}%`
+									[Op.like]: `%${q}%`
 								}
 							},
 							{
 								name: {
-									[Op.like]: `%${searchTerm}%`
+									[Op.like]: `%${q}%`
 								}
 							}
 						],

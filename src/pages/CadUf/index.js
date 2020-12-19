@@ -11,7 +11,7 @@ function CadUf(){
 
 	const [districts, setDistricts]     = useState([])
 	const [districtEdit, setDistrictEdit] = useState(null)
-	const [searchTerm, setSearchTerm]   = useState('')
+	const [q, setQ]   = useState('')
 	const [alert, setAlert] =  useState('')
 	const [alertChanger, setAlertChanger] = useState(0)
 
@@ -19,8 +19,8 @@ function CadUf(){
 
 	useEffect(()=>{
 		var query = ''
-		if(searchTerm){
-			query+=`?searchTerm=${searchTerm}`
+		if(q){
+			query+=`?q=${q}`
 		}
 
 		api.get(`/countryDistrict/${query}`,{
@@ -31,7 +31,7 @@ function CadUf(){
 			setDistricts(response.data)
 		})
 
-	},[setDistricts, authToken, searchTerm])
+	},[setDistricts, authToken, q])
 
 	function openModal(){
 		const modal = document.querySelector('#modalUf')
@@ -110,7 +110,7 @@ function CadUf(){
 				<h1 className="titleListTable">UFs</h1>
 				<div className="utility">
 					<div className="searchArea">
-						<input type="text" id="searchInput" value={searchTerm} onChange={event=>setSearchTerm(event.target.value)} placeholder="Buscar..."/>
+						<input type="text" id="searchInput" value={q} onChange={event=>setQ(event.target.value)} placeholder="Buscar..."/>
 					</div>
 					<div className="utilityButtons">
 						<button onClick={newItem} className="color-primary">Novo</button>
