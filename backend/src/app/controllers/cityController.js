@@ -52,16 +52,18 @@ module.exports = {
         }
     },
     async list(request, response){
-        const {searchTerm} = request.query
+        const {q, countryId, country_districtId} = request.query
 
         try{
             const cities = await city.findAll({
                 where: {
-                    ...(searchTerm?{
+                    ...(q?{
 						name: {
-						[Op.like]: `%${searchTerm}%`
+						[Op.like]: `%${q}%`
 						}
-					}:{})
+					}:{}),
+					...(countryId?{countryId}:{}),
+					...(country_districtId?{country_districtId}:{})
                 },
                 include: [
                     country,

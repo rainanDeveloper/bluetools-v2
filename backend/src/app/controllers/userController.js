@@ -33,8 +33,12 @@ module.exports = {
 			})
 		}
 		catch(error){
-			console.log(error)
-			return response.status(500).json({message: `Internal server error: ${error}`})
+			return response.status(500).json(
+				{
+					message: `Error during login attempt`,
+					error
+				}
+			)
 		}
 	},
 	async store(request, response){

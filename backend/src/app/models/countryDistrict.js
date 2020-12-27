@@ -1,5 +1,5 @@
 const {
-  Model
+	Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class country_district extends Model {
@@ -10,8 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.country, {foreignKey: 'countryId'})
-			this.hasMany(models.city, {foreignKey: 'country_districtId',onDelete: 'CASCADE'})
+		this.belongsTo(models.country, {foreignKey: 'countryId'})
+		this.hasMany(models.city, {foreignKey: 'country_districtId',onDelete: 'CASCADE'})
+		this.hasMany(models.customer, {foreignKey: 'country_districtId'})
 
     }
   };

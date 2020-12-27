@@ -1,0 +1,25 @@
+GET http://localhost:3333/customer/
+auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA3MjcyMDIwfQ.arJtFTMDTqo8UUiMV2avfbxK0-D5cXaAp0XhSzv4h-M
+
+### Post customers
+POST http://localhost:3333/customer/
+auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA3MjcyMDIwfQ.arJtFTMDTqo8UUiMV2avfbxK0-D5cXaAp0XhSzv4h-M
+Content-Type: application/json
+
+{
+	"name": "Giovanni Murilo Marcos da Paz",
+	"email": "giovannimurilomarcosdapaz__giovannimurilomarcosdapaz@iesa.com.br",
+	"address": "Caminho Três, Nº 656",
+	"birth_date": "1999-03-03",
+	"cep": "42803090",
+	"cityId": 4,
+	"countryId": 1,
+	"country_districtId": 2,
+	"cpf": "91757075518",
+	"telephone": "71993500917",
+	"status": 0
+}
+
+### Delete customer
+DELETE http://localhost:3333/customer/3
+auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA3MjcyMDIwfQ.arJtFTMDTqo8UUiMV2avfbxK0-D5cXaAp0XhSzv4h-M

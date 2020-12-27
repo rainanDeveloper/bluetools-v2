@@ -14,8 +14,16 @@
 }
 
 .utility .searchArea {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
     max-width: 350px;
     width: 30%;
+}
+
+.utility .searchArea button {
+	display: flex;
+	justify-content: center;
 }
 
 .utility #searchInput {

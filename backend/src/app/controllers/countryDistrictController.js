@@ -1,7 +1,5 @@
 const {Op} = require('sequelize')
-const {country} = require('../models')
-const {countryDistrict} = require('../models')
-const {city} = require('../models')
+const {country, countryDistrict, city} = require('../models')
 
 
 module.exports = {
@@ -62,26 +60,26 @@ module.exports = {
 
 	},
 	async list(request, response){
-		const {searchTerm, countryId} = request.query
+		const {q, countryId} = request.query
 
 		try {
 			const countryDistricts = await countryDistrict.findAll({
 				where: {
-					...(searchTerm?{
+					...(q?{
 						[Op.or]: [
 							{
 								abbreviation: {
-									[Op.like]: `%${searchTerm}%`
+									[Op.like]: `%${q}%`
 								}
 							},
 							{
 								name: {
-									[Op.like]: `%${searchTerm}%`
+									[Op.like]: `%${q}%`
 								}
 							}
 						],
 					}:{}),
-					...(country?{
+					...(countryId?{
 						countryId
 					}:{})
 				},

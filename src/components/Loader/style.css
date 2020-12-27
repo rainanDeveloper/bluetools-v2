@@ -1,0 +1,28 @@
+@keyframes spin {
+	0%   {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+
+.loaderContainer {
+	position: absolute;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background: #44444455;
+	z-index: 1000;
+}
+
+.loaderContainer.loading {
+	display: flex;
+}
+
+.loaderContainer .loader {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: solid 6px #ffffff55;
+	border-top: solid 6px white;
+	animation: spin 0.8s infinite linear;
+}

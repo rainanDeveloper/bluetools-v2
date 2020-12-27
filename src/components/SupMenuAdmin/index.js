@@ -40,7 +40,7 @@ function SupMenuAdmin(){
 				<li><Link to="#">Financeiro</Link>
 					<ul className="internalDropDown">
 						<li><Link to="/recebimentos">Recebimentos</Link></li>
-						<li><Link to="/recebimentos">Pagamentos</Link></li>
+						<li><Link to="/pagamentos">Pagamentos</Link></li>
 					</ul>
 				</li>
 				<li><Link to="/dashboard">Dashboard</Link></li>

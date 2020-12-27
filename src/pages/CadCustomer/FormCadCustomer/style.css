@@ -1,0 +1,25 @@
+form#customerForm {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+#lineTwoCustomer {
+	display: grid;
+	grid-template-columns: minmax(170px, 280px) minmax(100px, 180px);
+}
+
+#lineThreeCustomer {
+	display: grid;
+	grid-template-columns: minmax(170px, 280px) minmax(100px, 180px);
+}
+
+#linefourCustomer {
+	display: grid;
+	grid-template-columns: 1fr minmax(270px, 320px);
+}
+
+#lineFiveCustomer {
+	display: grid;
+	grid-template-columns: 1fr 1fr minmax(100px, 180px);
+}

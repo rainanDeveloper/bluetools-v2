@@ -9,7 +9,7 @@ import api from '../../services/api'
 
 function CadCity(){
 
-	const [searchTerm, setSearchTerm] = useState('')
+	const [q, setQ] = useState('')
 	const [cities, setCities] = useState([])
 	const [editedCity, setEditedCity] = useState()
 	const [alert, setAlert] = useState('')
@@ -18,14 +18,14 @@ function CadCity(){
 	const auth = localStorage.getItem('authToken')
 
 	useEffect(()=>{
-		api.get(`/city/?searchTerm=${searchTerm}`,{
+		api.get(`/city/?q=${q}`,{
 			headers: {
 				auth
 			}
 		}).then(({data: citiesFounded})=>{
 			setCities(citiesFounded)
 		})
-	}, [searchTerm, auth])
+	}, [q, auth])
 
 	function updateCitiesList(city){
 		const cityFinded = cities.find(c=>c.id===city.id)
@@ -109,7 +109,7 @@ function CadCity(){
 				<h1 className="titleListTable">Cidades</h1>
 				<div className="utility">
 					<div className="searchArea">
-						<input type="text" id="searchInput" value={searchTerm} onChange={event=>setSearchTerm(event.target.value)} placeholder="Buscar..."/>
+						<input type="text" id="searchInput" value={q} onChange={event=>setQ(event.target.value)} placeholder="Buscar..."/>
 					</div>
 					<div className="utilityButtons">
 						<button onClick={createCity} className="color-primary">Novo</button>

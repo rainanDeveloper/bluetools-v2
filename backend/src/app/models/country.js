@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 			// define association here
 			this.hasMany(models.countryDistrict, {foreignKey: 'countryId'})
 			this.hasMany(models.city, {foreignKey: 'countryId',onDelete: 'CASCADE'})
+			this.hasMany(models.customer, {foreignKey: 'countryId'})
 		}
 	};
 	country.init({
