@@ -118,7 +118,25 @@ function CadCustomer(){
 						<button onClick={newItem} className="color-primary">Novo</button>
 						<button onClick={editItem} className="color-primary">Editar</button>
 						<button className="color-primary">Exportar</button>
-						<button className="color-primary">Imprimir</button>
+						<button onClick={()=>{
+							PDFPrintTable('Clientes', 10, 10, {
+								columns: [
+									{header: "Código", dataKey: "id"},
+									{header:"Nome", dataKey: "name"},
+									{header:"CEP", dataKey: "masked_cep"},
+									{header:"Endereço", dataKey: "address"},
+									{header:"Telefone", dataKey: "masked_telephone"},
+									{header:"Data de Nasc.", dataKey: "masked_birth_date"}
+								],
+								body: (customers.map(c=>{
+									c.masked_cpf = cpfMask(c.cpf)
+									c.masked_telephone = phoneMask(c.telephone)
+									c.masked_cep = cepMask(c.cep)
+									c.masked_birth_date = dateMask(c.birth_date)
+									return c
+								}))
+							})
+						}} className="color-primary">Imprimir</button>
 					</div>
 				</div>
 				<HtmlTable id="tblPais" tableTitles={[

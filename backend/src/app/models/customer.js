@@ -4,7 +4,10 @@ const {
 module.exports = (sequelize, DataTypes) => {
 	class customer extends Model {
 		static associate(models) {
-		// define association here
+			this.hasMany(models.contract, {foreignKey: 'customerId',onDelete: 'CASCADE'})
+			this.belongsTo(models.country, {foreignKey: 'countryId'})
+			this.belongsTo(models.countryDistrict, {foreignKey: 'country_districtId'})
+			this.belongsTo(models.city, {foreignKey: 'cityId'})
 		}
 	};
 	customer.init({
@@ -12,9 +15,6 @@ module.exports = (sequelize, DataTypes) => {
 		email: DataTypes.STRING,
 		cpf: DataTypes.CHAR,
 		telephone: DataTypes.CHAR,
-		countryId: DataTypes.INTEGER,
-		country_districtId: DataTypes.INTEGER,
-		cityId: DataTypes.INTEGER,
 		address: DataTypes.STRING,
 		cep: DataTypes.CHAR,
 		birth_date: DataTypes.DATEONLY,
