@@ -33,5 +33,8 @@ routes.delete('/city/:id', userController.auth, cityController.delete)
 routes.get('/customer/', userController.auth, customerController.list)
 routes.post('/customer/', userController.auth, customerController.store)
 routes.delete('/customer/:id', userController.auth, customerController.delete)
+routes.delete('/contract/:id', userController.auth, customerController.delete)
+routes.delete('/contract/:id', userController.auth, customerController.delete)
+routes.delete('/contract/:id', userController.auth, customerController.delete)
 
 module.exports = routes
