@@ -3,7 +3,10 @@ import './style.css'
 import SupMenuAdmin from '../../components/SupMenuAdmin'
 import HtmlTable from '../../components/HtmlTable'
 import HtmlModal from '../../components/HtmlModal'
+import FormCadContract from './FormCadContract'
 import {FiSearch} from 'react-icons/fi'
+import api from '../../services/api'
+import { dateMask } from '../../functions/Masks'
 
 function CadContract(){
 
@@ -13,7 +16,14 @@ function CadContract(){
 	const authToken = localStorage.getItem('authToken')
 
 	useEffect(()=>{
-		
+		api.get('/contract/', {
+			headers: {
+				auth: authToken
+			}
+		})
+		.then(({data})=>{
+			setContracts(data)
+		})
 	}, [authToken, q])
 	
 	return (
@@ -33,8 +43,23 @@ function CadContract(){
 						<button className="color-primary">Exportar</button>
 					</div>
 				</div>
-				<HtmlTable id="tblContract" tableData={contracts}/>
+				<HtmlTable id="tblContract" tableData={contracts.map(c=>{
+					c.installDateWithMask = dateMask(c.installationDate)
+					c.dueDayComplete = `Dia ${c.dueDay} de todo mês`
+					c['customer.name'] = c.customer.name
+
+					return c
+				})}  tableTitles={[
+					{title: "ID", dataKey: "id"},
+					{title: "Cliente", dataKey: "customer.name"},
+					{title: "Data de instalação", dataKey: "installDateWithMask"},
+					{title: "Dia da cobrança", dataKey: "dueDayComplete"},
+					{title: "Status", dataKey: "status"}
+				]}/>
 			</div>
+			<HtmlModal titleModal={`Cadastro de País`} modalId="modalPais">
+				<FormCadContract />
+			</HtmlModal>
 		</>
 	)
 }

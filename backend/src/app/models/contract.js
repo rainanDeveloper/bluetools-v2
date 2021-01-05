@@ -1,6 +1,4 @@
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
 	class contract extends Model {
 		static associate(models) {
@@ -9,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
 	};
 	contract.init({
 		dueDay: DataTypes.INTEGER,
-		installationDate: DataTypes.DATEONLY
+		installationDate: DataTypes.DATEONLY,
+		status: DataTypes.INTEGER
 	}, {
 		sequelize,
 		modelName: 'contract',
