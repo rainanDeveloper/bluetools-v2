@@ -23,6 +23,7 @@
 		"supertest": "^4.0.2"
 	},
 	"scripts": {
+		"postinstall": "sequelize db:create && sequelize db:migrate",
 		"pretest": "NODE_ENV=test sequelize db:migrate",
 		"test": "NODE_ENV=test jest",
 		"posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
