@@ -25,8 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 		salt: DataTypes.CHAR,
 		name: DataTypes.STRING,
 		email: DataTypes.STRING,
-		cpf: DataTypes.CHAR,
-		cnpj: DataTypes.CHAR,
+		ssa_vat_id: DataTypes.CHAR,
 		image: DataTypes.STRING
 	}, {
 		sequelize,

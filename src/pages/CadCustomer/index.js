@@ -129,9 +129,9 @@ function CadCustomer(){
 									{header:"Data de Nasc.", dataKey: "masked_birth_date"}
 								],
 								body: (customers.map(c=>{
-									c.masked_cpf = cpfMask(c.cpf)
-									c.masked_telephone = phoneMask(c.telephone)
-									c.masked_cep = cepMask(c.cep)
+									c.masked_cpf = cpfMask(c.ssa_vat_id||'')
+									c.masked_telephone = phoneMask(c.telephone||'')
+									c.masked_cep = cepMask(c.cep||'')
 									c.masked_birth_date = dateMask(c.birth_date)
 									return c
 								}))
@@ -149,10 +149,10 @@ function CadCustomer(){
 					{title:"Endereço", dataKey: "address"},
 					{title:"Data de Nasc.", dataKey: "masked_birth_date"},
 					]} tableData={customers.map(c=>{
-						c.masked_cpf = cpfMask(c.cpf)
-						c.masked_telephone = phoneMask(c.telephone)
-						c.masked_cep = cepMask(c.cep)
-						c.masked_birth_date = dateMask(c.birth_date)
+						c.masked_cpf = cpfMask(c.ssa_vat_id||'')
+						c.masked_telephone = phoneMask(c.telephone||'')
+						c.masked_cep = cepMask(c.cep||'')
+						c.masked_birth_date = dateMask(c.birth_date||'')
 						return c
 					})} selection={true} selectionCallback={items=>{
 						setCustomers(items)

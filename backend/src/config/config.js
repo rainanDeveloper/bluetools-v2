@@ -15,5 +15,6 @@ module.exports = {
 		timestamps: true,
 		undescored: true,
 		undescoredAll: true
-	}
+	},
+	seederStorage: "json"
 }

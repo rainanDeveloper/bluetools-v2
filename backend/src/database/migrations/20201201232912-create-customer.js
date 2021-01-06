@@ -15,8 +15,8 @@ module.exports = {
 				allowNull: false,
 				unique: true
 			},
-			cpf: {
-				type: Sequelize.CHAR(11),
+			ssa_vat_id: {
+				type: Sequelize.CHAR(32),
 				allowNull: false,
 				unique: true
 			},

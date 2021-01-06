@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 	customer.init({
 		name: DataTypes.STRING,
 		email: DataTypes.STRING,
-		cpf: DataTypes.CHAR,
+		ssa_vat_id: DataTypes.CHAR,
 		telephone: DataTypes.CHAR,
 		address: DataTypes.STRING,
 		cep: DataTypes.CHAR,

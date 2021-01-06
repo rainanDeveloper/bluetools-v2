@@ -16,7 +16,7 @@ module.exports = {
 			country_districtId,
 			cityId,
 			address,
-			cep,
+			ssa_vat_id,
 			birth_date,
 			status
 		} = request.body
@@ -36,7 +36,7 @@ module.exports = {
 					existentCustomer.country_districtId	= country_districtId
 					existentCustomer.cityId				= cityId
 					existentCustomer.address			= address
-					existentCustomer.cep				= cep
+					existentCustomer.ssa_vat_id				= ssa_vat_id
 					existentCustomer.birth_date			= birth_date
 					existentCustomer.status				= status
 
@@ -69,7 +69,7 @@ module.exports = {
 					country_districtId,
 					cityId,
 					address,
-					cep,
+					ssa_vat_id,
 					birth_date,
 					status
 				})

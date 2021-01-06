@@ -9,7 +9,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
-	const [cpf, setCpf] = useState('')
+	const [ssa_vat_id, setSsaVatId] = useState('')
 	const [birth_date, setBirthDate] = useState('')
 	const [telephone, setPhone] = useState('')
 	const [cep, setCep] = useState('')
@@ -29,7 +29,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 			setName(customer.name)
 			setEmail(customer.email)
 			setBirthDate(customer.birth_date)
-			setCpf(customer.cpf)
+			setSsaVatId(customer.ssa_vat_id)
 			setPhone(customer.telephone)
 			setCep(customer.cep)
 			setAddress(customer.address)
@@ -41,7 +41,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 			setName('')
 			setEmail('')
 			setBirthDate('')
-			setCpf('')
+			setSsaVatId('')
 			setPhone('')
 			setCep('')
 			setAddress('')
@@ -142,7 +142,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 		{
 			...(customer?{id: customer.id}:{}),
 			name,
-			cpf,
+			ssa_vat_id,
 			email,
 			telephone,
 			countryId,
@@ -277,7 +277,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 				</div>
 				<div className="input-group">
 					<label htmlFor="customerCpf">CPF</label>
-					<input id="customerCpf" type="text" pattern="\d{3}.\d{3}.\d{3}-\d{2}" required value={cpfMask(cpf)} onChange={event=>setCpf(event.target.value.replace(/\D/g, ''))} maxLength={14}/>
+					<input id="customerCpf" type="text" pattern="\d{3}.\d{3}.\d{3}-\d{2}" required value={cpfMask(ssa_vat_id)} onChange={event=>setSsaVatId(event.target.value.replace(/\D/g, ''))} maxLength={14}/>
 				</div>
 			</div>
 			<div className="input-line" id="lineThreeCustomer">
