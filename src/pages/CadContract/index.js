@@ -150,6 +150,7 @@ function CadContract(){
 				selection={true}
 				selectionCallback={setContracts}
 				delectionCallback={deleteItem}
+				itemDoubleClickCallback={editItem}
 				/>
 			</div>
 			<HtmlModal titleModal={`Cadastro de Contrato`} modalId="modalContract">
