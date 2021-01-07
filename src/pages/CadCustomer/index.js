@@ -75,7 +75,7 @@ function CadCustomer(){
 	}
 
 	function newItem(){
-		setEditedCustomer(null)
+		setEditedCustomer(undefined)
 		
 		openModal()
 
@@ -99,7 +99,7 @@ function CadCustomer(){
 			setCustomers([...customers, customer])
 		}
 
-
+		setEditedCustomer(undefined)
 		closeModal()
 	}
 

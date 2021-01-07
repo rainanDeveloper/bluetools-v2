@@ -158,6 +158,16 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 			}
 		})
 		.then(({data})=>{
+			setName('')
+			setEmail('')
+			setBirthDate('')
+			setSsaVatId('')
+			setPhone('')
+			setCep('')
+			setAddress('')
+			setCityId('')
+			setCountryDistrictId('')
+			setCountryId('')
 			saveCallback(data)
 			setLoader(false)
 		})
@@ -243,7 +253,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 
 
 	function cepProcessing(){
-		if(cep.length===8){
+		if(cep?.length===8){
 			axios.get(`https://brasilapi.com.br/api/cep/v1/${cep}`)
 			.then(async ({data})=>{
 				setAddress(`${data.street}, ${data.neighborhood}`)
@@ -293,7 +303,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 			<div className="input-line" id="linefourCustomer">
 				<div className="input-group">
 					<label htmlFor="customerCep">CEP</label>
-					<input id="customerCep" type="text" pattern="\d{5}-\d{3}" required value={cepMask(cep)} onChange={event=>{setCep(event.target.value.replace(/\D/g, ''))}} maxLength={9} onBlur={cepProcessing}/>
+					<input id="customerCep" type="text" pattern="\d{5}-\d{3}" required value={cepMask(cep||'')} onChange={event=>{setCep(event.target.value.replace(/\D/g, ''))}} maxLength={9} onBlur={cepProcessing}/>
 				</div>
 				<div className="input-group">
 					<label htmlFor="customerAddress">Endereço</label>

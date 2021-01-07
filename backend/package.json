@@ -8,6 +8,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"factory-girl": "^5.0.4",
 		"jsonwebtoken": "^8.5.1",
@@ -23,7 +24,7 @@
 		"supertest": "^4.0.2"
 	},
 	"scripts": {
-		"postinstall": "sequelize db:create && sequelize db:migrate",
+		"postinstall": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
 		"pretest": "NODE_ENV=test sequelize db:migrate",
 		"test": "NODE_ENV=test jest",
 		"posttest": "NODE_ENV=test sequelize db:migrate:undo:all",

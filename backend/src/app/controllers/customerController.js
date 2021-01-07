@@ -9,14 +9,14 @@ module.exports = {
 		const {
 			id,
 			name,
-			cpf,
+			ssa_vat_id,
 			email,
 			telephone,
 			countryId,
 			country_districtId,
 			cityId,
 			address,
-			ssa_vat_id,
+			cep,
 			birth_date,
 			status
 		} = request.body
@@ -29,7 +29,7 @@ module.exports = {
 			if(existentCustomer){
 				try{
 					existentCustomer.name				= name
-					existentCustomer.cpf				= cpf
+					existentCustomer.cep				= cep
 					existentCustomer.email				= email
 					existentCustomer.telephone			= telephone
 					existentCustomer.countryId			= countryId
@@ -62,7 +62,7 @@ module.exports = {
 			try{
 				const newCustomer = await customer.create({
 					name,
-					cpf,
+					cep,
 					email,
 					telephone,
 					countryId,
