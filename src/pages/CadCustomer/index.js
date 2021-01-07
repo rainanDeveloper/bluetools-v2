@@ -6,6 +6,7 @@ import HtmlTable from '../../components/HtmlTable'
 import HtmlModal from '../../components/HtmlModal'
 import ToastDisplay from '../../components/ToastDisplay'
 import PDFPrintTable from '../../functions/PdfPrintTable'
+import { confirmAlert } from 'react-confirm-alert'
 
 import {FiSearch} from 'react-icons/fi'
 import api from '../../services/api'
@@ -38,14 +39,29 @@ function CadCustomer(){
 	}, [setCustomers,authToken, q])
 
 	function deleteItem(id){
-		api.delete(`/customer/${id}`, {
-			headers: {
-				auth: authToken
-			}
-		}).then(()=>{
-			setCustomers(customers.filter(c=>parseInt(c.id)!==parseInt(id)))
-			setAlert(`Cliente ${id} deletado com sucesso!`)
-			setAlertChanger(alertChanger+1)
+		confirmAlert({
+			title: "Deletar Cliente",
+			message: `Deseja deletar Cliente ${id}?`,
+			buttons: [
+				{
+					label: 'Confirmar',
+					onClick: () => {
+						api.delete(`/customer/${id}`, {
+							headers: {
+								auth: authToken
+							}
+						}).then(()=>{
+							setCustomers(customers.filter(c=>parseInt(c.id)!==parseInt(id)))
+							setAlert(`Cliente ${id} deletado com sucesso!`)
+							setAlertChanger(alertChanger+1)
+						})
+					}
+				},
+				{
+					label: 'Cancelar',
+					onClick: () => {}
+				}
+			]		
 		})
 	}
 
@@ -60,7 +76,7 @@ function CadCustomer(){
 	}
 
 	function editItem(){
-		const selectedCustomer = customers.find(country=>country.selected)
+		const selectedCustomer = customers.find(customer=>customer.selected)
 
 		setEditedCustomer(selectedCustomer)
 

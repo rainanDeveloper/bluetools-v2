@@ -6,7 +6,9 @@ module.exports = {
 		const {id, dueDay, installationDate, customerId, status} = request.body
 
 		if(id) {
-			const contractToSave = await contract.findByPk(id)
+			const contractToSave = await contract.findByPk(id, {
+				include: [customer]
+			})
 
 			if(contractToSave){
 				try{
@@ -40,8 +42,12 @@ module.exports = {
 					customerId,
 					status
 				})
+
+				const findedContract = await contract.findByPk(contractCreated.id, {
+					include: [customer]
+				})
 	
-				return response.json(contractCreated)
+				return response.json(findedContract)
 			}
 			catch(error){
 				return response.status(500).json({

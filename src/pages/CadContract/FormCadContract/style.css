@@ -1,0 +1,9 @@
+div.input-line#lineOneContract {
+	display: grid;
+	grid-template-columns: minmax(20px, 80px) 1fr;
+}
+
+div.input-line#lineTwoContract {
+	display: grid;
+	grid-template-columns: minmax(20px, 80px) 1fr minmax(70px, 150px);
+}

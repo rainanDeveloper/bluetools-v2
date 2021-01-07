@@ -14,7 +14,8 @@ module.exports = {
 			type: Sequelize.INTEGER
 		},
 		installationDate: {
-			type: Sequelize.DATEONLY
+			type: Sequelize.DATEONLY,
+			allowNull: true
 		},
 		status: {
 			type: Sequelize.INTEGER,
