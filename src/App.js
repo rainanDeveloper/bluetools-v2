@@ -8,6 +8,7 @@ import CadUf from './pages/CadUf'
 import CadCity from './pages/CadCity'
 import CadCustomer from './pages/CadCustomer'
 import CadContract from './pages/CadContract'
+import CadUser from './pages/CadUser'
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 				<Route path="/cidades" exact component={CadCity}/>
 				<Route path="/clientes" exact component={CadCustomer}/>
 				<Route path="/contratos" exact component={CadContract}/>
+				<Route path="/usuarios" exact component={CadUser}/>
 			</Switch>
 		</BrowserRouter>
 	);

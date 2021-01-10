@@ -43,33 +43,6 @@ module.exports = {
 	},
 	async store(request, response){
 		const {
-			login,
-			password_unhashed,
-			name,
-			email,
-			cpf,
-			cnpj,
-			image
-		} = request.body
-
-		try{
-			const User = await user.create({
-				login,
-				password_unhashed,
-				name,
-				email,
-				cpf,
-				cnpj,
-				image
-			})
-			return response.json(User)
-		}
-		catch(error){
-			return response.status(400).json({message: 'You must supply all the requirements for user creation!'})
-		}
-	},
-	async change(request, response){
-		const {
 			id,
 			login,
 			password_unhashed,
@@ -80,27 +53,50 @@ module.exports = {
 			image
 		} = request.body
 
-		if(!id){
-			return response.status(400).json({message: 'id not specified'})
+		if(id){
+			const User = await user.findByPk(id)
+
+			if(!User){
+				return response.status(400).json({message: 'id invalid'})
+			}
+		
+			try{
+				User.login=login
+				User.password_unhashed=password_unhashed
+				User.name=name
+				User.email=email
+				User.cpf=cpf
+				User.cnpj=cnpj
+				User.image=image
+		
+				User.save()
+		
+				return response.json(User)		
+			}
+			catch(error){
+				return response.status(400).json({
+					message: 'Error during user update!',
+					error
+				})
+			}
 		}
-
-		const User = await user.findByPk(id)
-
-		if(!User){
-			return response.status(400).json({message: 'id invalid'})
+		else{
+			try{
+				const User = await user.create({
+					login,
+					password_unhashed,
+					name,
+					email,
+					cpf,
+					cnpj,
+					image
+				})
+				return response.json(User)
+			}
+			catch(error){
+				return response.status(400).json({message: 'You must supply all the requirements for user creation!'})
+			}
 		}
-
-		User.login=login
-		User.password_unhashed=password_unhashed
-		User.name=name
-		User.email=email
-		User.cpf=cpf
-		User.cnpj=cnpj
-		User.image=image
-
-		User.save()
-
-		return response.json(User)
 	},
 	async auth(request, response, next){
 		const {auth} = request.headers
