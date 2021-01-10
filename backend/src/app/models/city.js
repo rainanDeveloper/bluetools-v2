@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 		this.belongsTo(models.country, {foreignKey: 'countryId'})
 		this.belongsTo(models.countryDistrict, {foreignKey: 'country_districtId'})
 		this.hasMany(models.customer, {foreignKey: 'cityId'})
+		this.hasMany(models.provider, {foreignKey: 'cityId'})
 		}
 	};
 	city_.init({

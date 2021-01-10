@@ -8,7 +8,16 @@ module.exports = {
 			type: Sequelize.INTEGER
 		},
 		customerId: {
-			type: Sequelize.INTEGER
+			type: Sequelize.INTEGER,
+			references: {
+				model: 'customers',
+				key: 'id'
+			}
+		},
+		payment_amount: {
+			type: Sequelize.DECIMAL(15,4),
+			allowNull: false,
+			defaultValue: 0
 		},
 		dueDay: {
 			type: Sequelize.INTEGER

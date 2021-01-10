@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
 	class contract extends Model {
 		static associate(models) {
 			this.belongsTo(models.customer, {foreignKey: 'customerId'})
+			this.hasMany(models.receivement, {foreignKey: 'contractId'})
 		}
 	};
 	contract.init({

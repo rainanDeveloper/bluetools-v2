@@ -11,10 +11,7 @@ const path = require('path')
 // public folder
 
 routes.use('/', express.static(path.join(__dirname, './public')))
-routes.use('/dashboard', express.static(path.join(__dirname, './public')))
-routes.use('/pais', express.static(path.join(__dirname, './public')))
-routes.use('/ufs', express.static(path.join(__dirname, './public')))
-routes.use('/cidades', express.static(path.join(__dirname, './public')))
+routes.use('/*', express.static(path.join(__dirname, './public')))
 
 // Api
 
