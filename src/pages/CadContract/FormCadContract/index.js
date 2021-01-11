@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { formatToTwoDigit } from '../../../functions/Masks'
 import api from '../../../services/api'
 import './style.css'
 
@@ -8,6 +9,7 @@ function FormCadContract({contract, saveCallback=((c)=>{})}){
 	const [dueDay, setDueDay] = useState(contract?contract.dueDay:'')
 	const [installationDate, setInstallationDate] = useState(contract?contract.installationDate:1)
 	const [status, setStatus] = useState(contract?contract.status:1)
+	const [payment_amount, setPaymentAmount] = useState(contract?contract.payment_amount:1)
 	const [customers, setCustomers] = useState([])
 
 	const auth = localStorage.getItem('authToken')
@@ -37,12 +39,14 @@ function FormCadContract({contract, saveCallback=((c)=>{})}){
 		if(contract){
 			setCustomerId(contract.customerId)
 			setStatus(contract.status)
+			setPaymentAmount(contract.payment_amount)
 			setDueDay(contract.dueDay)
 			setInstallationDate(contract.installationDate)
 		}
 		else{
 			setCustomerId('')
 			setStatus(1)
+			setPaymentAmount(0)
 			setDueDay(1)
 			setInstallationDate('')
 		}
@@ -103,21 +107,36 @@ function FormCadContract({contract, saveCallback=((c)=>{})}){
 						</select>						
 					</div>
 					<div className="input-group">
-						<label htmlFor="status">Status</label>
-						<select name="status" id="status" value={status} onChange={event=>setStatus(event.target.value)} required>
-							<option value={1}>Ativo</option>
-							<option value={0}>Inativo</option>
-						</select>
+						<label htmlFor="payment_amount">Valor do pagamento</label>
+						<input type="text" value={formatToTwoDigit(payment_amount)} onChange={event=>setPaymentAmount(
+								parseFloat(
+									event
+									.target
+									.value
+									.replace(/[^\d]/g, '')
+									.padStart(3,'0')
+									.replace(/(\d{2}$)/, '.$1')
+									)
+							)}/>
 					</div>
 					<div className="input-group">
 						<label htmlFor="installationDate">Data de instalação</label>
 						<input type="date" name="installationDate" id="installationDate"
 						value={installationDate}
 						onChange={event=>setInstallationDate(
-								event
-								.target
-								.value
-							)} required/>
+							event
+							.target
+							.value
+						)} required/>
+					</div>
+				</div>
+				<div className="input-line" id="lineThreeContract">
+					<div className="input-group">
+						<label htmlFor="status">Status</label>
+						<select name="status" id="status" value={status} onChange={event=>setStatus(event.target.value)} required>
+							<option value={1}>Ativo</option>
+							<option value={0}>Inativo</option>
+						</select>
 					</div>
 				</div>
 				<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
