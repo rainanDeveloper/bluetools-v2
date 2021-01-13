@@ -21,8 +21,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-	"build": "react-scripts build",
-	"postbuild": "cp -r ./build/* ./backend/src/public",
+    "build": "react-scripts build",
+    "postbuild": "cp -r ./build/* ./backend/src/public",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
