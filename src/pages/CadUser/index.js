@@ -13,7 +13,12 @@ function CadUser(){
 	const auth = localStorage.getItem('authToken')
 
 	useEffect(()=>{
-		api.get('/user/', {
+		var query = ''
+		if(q){
+			query+=`?q=${q}`
+		}
+
+		api.get(`/user/${query}`, {
 			headers: {
 				auth
 			}
@@ -21,7 +26,24 @@ function CadUser(){
 		.then(({data})=>{
 			setUsers(data)
 		})
-	}, [])
+	}, [setUsers, auth, q])
+
+	function deleteItem(id){
+		if(window.confirm(`Deseja realmente excluir UF ${id}?`)){
+			api.delete(`/user/${id}`,{
+				headers:{
+					auth
+				}
+			}).then(()=>{
+				setUsers(users.filter(u=>(parseInt(u.id)!==parseInt(id))))
+				//setAlert(`Usuário ${id} deletado com sucesso!`)
+				//setAlertChanger(alertChanger+1)
+			}).catch(error=>{
+				//setAlert(`Erro ao deletar Usuário ${id}`)
+				//setAlertChanger(alertChanger+1)
+			})
+		}
+	}
 	
 	return (
 	<>
@@ -50,6 +72,10 @@ function CadUser(){
 				u.maskedVAT = cpfMask(u.ssa_vat_id)
 				return u
 			})}
+			selection={true} selectionCallback={items=>{
+				setUsers(items)
+			}}
+			delectionCallback={deleteItem}
 			/>
 		</div>
 		

@@ -122,5 +122,37 @@ module.exports = {
 		const users = await user.findAll()
 
 		return response.json(users)
+	},
+	async delete(request, response){
+		const {id} = request.params
+
+		if(parseInt(id)===request.user_id.id){
+			return response.status(401)
+			.json({
+				message: `Unabled to delete authenticated user!`
+			})
+		}
+
+		try{
+			const userToDelete = await user.findByPk(id)
+
+			if(userToDelete){
+				await userToDelete.destroy()
+
+				return response.json({
+					message: `User ${id} successfully deleted!`
+				})
+			}
+			else{
+				return response.status(404).json({
+					message: `Unable to find user with id ${id}`
+				})
+			}
+		}
+		catch(error){
+			return response.status(500).json({
+				message: `Internal server error: ${error}!`
+			})
+		}
 	}
 }
