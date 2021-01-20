@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
+import HtmlModal from '../../components/HtmlModal'
 import HtmlTable from '../../components/HtmlTable'
 import SupMenuAdmin from '../../components/SupMenuAdmin'
+import ToastDisplay from '../../components/ToastDisplay'
 import { cpfMask } from '../../functions/Masks'
 
 import api from '../../services/api'
@@ -8,6 +10,8 @@ import api from '../../services/api'
 function CadUser(){
 	
 	const [users, setUsers] = useState([])
+	const [alert, setAlert] =  useState('')
+	const [alertChanger, setAlertChanger] = useState(0)
 	const [q, setQ] =  useState('')
 
 	const auth = localStorage.getItem('authToken')
@@ -36,11 +40,17 @@ function CadUser(){
 				}
 			}).then(()=>{
 				setUsers(users.filter(u=>(parseInt(u.id)!==parseInt(id))))
-				//setAlert(`Usuário ${id} deletado com sucesso!`)
-				//setAlertChanger(alertChanger+1)
+				setAlert(`Usuário ${id} deletado com sucesso!`)
+				setAlertChanger(alertChanger+1)
 			}).catch(error=>{
-				//setAlert(`Erro ao deletar Usuário ${id}`)
-				//setAlertChanger(alertChanger+1)
+				if(error?.response?.status==401){
+					setAlert(`Erro ao deletar Usuário ${id}: Operação não permitida!`)
+					setAlertChanger(alertChanger+1)
+				}
+				else{
+					setAlert(`Erro ao deletar Usuário ${id}`)
+					setAlertChanger(alertChanger+1)
+				}
 			})
 		}
 	}
@@ -77,6 +87,10 @@ function CadUser(){
 			}}
 			delectionCallback={deleteItem}
 			/>
+			<HtmlModal titleModal={`Cadastro de Usuário`} modalId="modalUser">
+				
+			</HtmlModal>
+			<ToastDisplay changer={alertChanger}>{alert}</ToastDisplay>
 		</div>
 		
 	</>
