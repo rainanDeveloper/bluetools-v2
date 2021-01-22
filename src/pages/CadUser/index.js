@@ -6,10 +6,12 @@ import ToastDisplay from '../../components/ToastDisplay'
 import { cpfMask } from '../../functions/Masks'
 
 import api from '../../services/api'
+import FormCadUser from './FormCadUser'
 
 function CadUser(){
 	
 	const [users, setUsers] = useState([])
+	const [userEdit, setUserEdit] = useState([])
 	const [alert, setAlert] =  useState('')
 	const [alertChanger, setAlertChanger] = useState(0)
 	const [q, setQ] =  useState('')
@@ -31,6 +33,35 @@ function CadUser(){
 			setUsers(data)
 		})
 	}, [setUsers, auth, q])
+
+	function openModal(){
+		const modal = document.querySelector('#modalUser')
+		modal.classList.add('active')
+	}
+
+	function closeModal(){
+		const modal = document.querySelector('#modalUser')
+		modal.classList.remove('active')
+	}
+
+	function editItem(){
+		const selectedDistrict = users.filter(u=>u.selected)[0]
+
+		setUserEdit(selectedDistrict)
+
+		if(selectedDistrict){
+			openModal()
+		}
+		else{
+			window.alert('Nenhum item selecionado!')
+		}
+	}
+
+	function newItem(){
+		setUserEdit(null)
+		
+		openModal()
+	}
 
 	function deleteItem(id){
 		if(window.confirm(`Deseja realmente excluir UF ${id}?`)){
@@ -54,6 +85,30 @@ function CadUser(){
 			})
 		}
 	}
+
+	function updateUserOnList(user){
+		const findedUser = users.filter(u=>u.id===user.id)
+		if(findedUser.length>0){
+			setUsers(users.map(u=>{
+				if(u.id===user.id){
+					return user
+				}
+				else{
+					return u
+				}
+			}))
+		}
+		else{
+			setUsers([...users,user])
+		}
+	}
+
+	function saveCallback(user){
+		updateUserOnList(user)
+		closeModal()
+		setAlert(`UF ${user.name}(${user.id}) salva com sucesso!`)
+		setAlertChanger(alertChanger+1)
+	}
 	
 	return (
 	<>
@@ -66,7 +121,7 @@ function CadUser(){
 					<input type="text" id="searchInput" value={q} onChange={event=>setQ(event.target.value)} placeholder="Buscar..."/>
 					</div>
 					<div className="utilityButtons">
-						<button className="color-primary">Novo</button>
+						<button onClick={newItem} className="color-primary">Novo</button>
 						<button className="color-primary">Editar</button>
 						<button className="color-primary">Exportar</button>
 						<button className="color-primary">Imprimir</button>
@@ -88,7 +143,7 @@ function CadUser(){
 			delectionCallback={deleteItem}
 			/>
 			<HtmlModal titleModal={`Cadastro de Usuário`} modalId="modalUser">
-				
+				<FormCadUser user={userEdit} saveCallback={saveCallback}/>
 			</HtmlModal>
 			<ToastDisplay changer={alertChanger}>{alert}</ToastDisplay>
 		</div>

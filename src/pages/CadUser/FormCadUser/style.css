@@ -1,0 +1,27 @@
+.CadUserContainer {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.CadUserContainer .imgContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.CadUserContainer .imgContainer div {
+	display: flex;
+	flex-direction: column;
+	width: 180px;
+	height: 180px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.CadUserContainer .input-fields {
+	display: grid;
+	grid-template-columns: 1fr minmax(120px, 150px);
+	grid-gap: 10px;
+}
