@@ -48,8 +48,7 @@ module.exports = {
 			password_unhashed,
 			name,
 			email,
-			cpf,
-			cnpj,
+			ssa_vat_id,
 			image
 		} = request.body
 
@@ -65,8 +64,7 @@ module.exports = {
 				User.password_unhashed=password_unhashed
 				User.name=name
 				User.email=email
-				User.cpf=cpf
-				User.cnpj=cnpj
+				User.ssa_vat_id=ssa_vat_id
 				User.image=image
 		
 				User.save()
@@ -87,8 +85,7 @@ module.exports = {
 					password_unhashed,
 					name,
 					email,
-					cpf,
-					cnpj,
+					ssa_vat_id,
 					image
 				})
 				return response.json(User)

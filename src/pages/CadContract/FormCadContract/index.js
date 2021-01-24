@@ -139,7 +139,9 @@ function FormCadContract({contract, saveCallback=((c)=>{})}){
 						</select>
 					</div>
 				</div>
-				<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
+				<footer className="save">
+					<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
+				</footer>
 			</form>
 		</>
 	)

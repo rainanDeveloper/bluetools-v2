@@ -73,7 +73,9 @@ function FormCadPais({country, saveCallback=((c)=>{})}){
 					<input type="text" id="currency" value={currency} onChange={event=>setCurrency(event.target.value.toUpperCase())} maxLength={3}/>
 				</div>
 			</div>
-			<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
+			<footer className="save">
+				<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
+			</footer>
 		</form>
 	</>
 	)

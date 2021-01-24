@@ -45,11 +45,11 @@ function CadUser(){
 	}
 
 	function editItem(){
-		const selectedDistrict = users.filter(u=>u.selected)[0]
+		const selectedUser = users.filter(u=>u.selected)[0]
 
-		setUserEdit(selectedDistrict)
+		setUserEdit(selectedUser)
 
-		if(selectedDistrict){
+		if(selectedUser){
 			openModal()
 		}
 		else{
@@ -64,7 +64,7 @@ function CadUser(){
 	}
 
 	function deleteItem(id){
-		if(window.confirm(`Deseja realmente excluir UF ${id}?`)){
+		if(window.confirm(`Deseja realmente excluir usuário ${id}?`)){
 			api.delete(`/user/${id}`,{
 				headers:{
 					auth
@@ -106,7 +106,7 @@ function CadUser(){
 	function saveCallback(user){
 		updateUserOnList(user)
 		closeModal()
-		setAlert(`UF ${user.name}(${user.id}) salva com sucesso!`)
+		setAlert(`Usuário ${user.name}(${user.id}) salvo com sucesso!`)
 		setAlertChanger(alertChanger+1)
 	}
 	
@@ -122,7 +122,7 @@ function CadUser(){
 					</div>
 					<div className="utilityButtons">
 						<button onClick={newItem} className="color-primary">Novo</button>
-						<button className="color-primary">Editar</button>
+						<button onClick={editItem} className="color-primary">Editar</button>
 						<button className="color-primary">Exportar</button>
 						<button className="color-primary">Imprimir</button>
 					</div>
@@ -134,13 +134,14 @@ function CadUser(){
 				{title: 'CPF', dataKey: 'maskedVAT'}
 			]}
 			tableData={users.map(u=>{
-				u.maskedVAT = cpfMask(u.ssa_vat_id)
+				u.maskedVAT = cpfMask(u.ssa_vat_id||'')
 				return u
 			})}
 			selection={true} selectionCallback={items=>{
 				setUsers(items)
 			}}
 			delectionCallback={deleteItem}
+			itemDoubleClickCallback={editItem}
 			/>
 			<HtmlModal titleModal={`Cadastro de Usuário`} modalId="modalUser">
 				<FormCadUser user={userEdit} saveCallback={saveCallback}/>
