@@ -9,7 +9,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
-	const [cpf, setCpf] = useState('')
+	const [ssa_vat_id, setSsaVatId] = useState('')
 	const [birth_date, setBirthDate] = useState('')
 	const [telephone, setPhone] = useState('')
 	const [cep, setCep] = useState('')
@@ -29,7 +29,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 			setName(customer.name)
 			setEmail(customer.email)
 			setBirthDate(customer.birth_date)
-			setCpf(customer.cpf)
+			setSsaVatId(customer.ssa_vat_id)
 			setPhone(customer.telephone)
 			setCep(customer.cep)
 			setAddress(customer.address)
@@ -41,7 +41,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 			setName('')
 			setEmail('')
 			setBirthDate('')
-			setCpf('')
+			setSsaVatId('')
 			setPhone('')
 			setCep('')
 			setAddress('')
@@ -142,7 +142,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 		{
 			...(customer?{id: customer.id}:{}),
 			name,
-			cpf,
+			ssa_vat_id,
 			email,
 			telephone,
 			countryId,
@@ -158,6 +158,16 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 			}
 		})
 		.then(({data})=>{
+			setName('')
+			setEmail('')
+			setBirthDate('')
+			setSsaVatId('')
+			setPhone('')
+			setCep('')
+			setAddress('')
+			setCityId('')
+			setCountryDistrictId('')
+			setCountryId('')
 			saveCallback(data)
 			setLoader(false)
 		})
@@ -243,7 +253,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 
 
 	function cepProcessing(){
-		if(cep.length===8){
+		if(cep?.length===8){
 			axios.get(`https://brasilapi.com.br/api/cep/v1/${cep}`)
 			.then(async ({data})=>{
 				setAddress(`${data.street}, ${data.neighborhood}`)
@@ -277,7 +287,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 				</div>
 				<div className="input-group">
 					<label htmlFor="customerCpf">CPF</label>
-					<input id="customerCpf" type="text" pattern="\d{3}.\d{3}.\d{3}-\d{2}" required value={cpfMask(cpf)} onChange={event=>setCpf(event.target.value.replace(/\D/g, ''))} maxLength={14}/>
+					<input id="customerCpf" type="text" pattern="\d{3}.\d{3}.\d{3}-\d{2}" required value={cpfMask(ssa_vat_id)} onChange={event=>setSsaVatId(event.target.value.replace(/\D/g, ''))} maxLength={14}/>
 				</div>
 			</div>
 			<div className="input-line" id="lineThreeCustomer">
@@ -293,7 +303,7 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 			<div className="input-line" id="linefourCustomer">
 				<div className="input-group">
 					<label htmlFor="customerCep">CEP</label>
-					<input id="customerCep" type="text" pattern="\d{5}-\d{3}" required value={cepMask(cep)} onChange={event=>{setCep(event.target.value.replace(/\D/g, ''))}} maxLength={9} onBlur={cepProcessing}/>
+					<input id="customerCep" type="text" pattern="\d{5}-\d{3}" required value={cepMask(cep||'')} onChange={event=>{setCep(event.target.value.replace(/\D/g, ''))}} maxLength={9} onBlur={cepProcessing}/>
 				</div>
 				<div className="input-group">
 					<label htmlFor="customerAddress">Endereço</label>
@@ -329,7 +339,9 @@ function FormCadCustomer({customer, saveCallback=(()=>{})}){
 					</select>
 				</div>
 			</div>
-			<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
+			<footer className="save">
+				<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
+			</footer>
 		</form>
 	</>
 	)

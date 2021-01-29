@@ -91,7 +91,9 @@ function FormCadUf({district, saveCallback=((d)=>{})}){
 						<input type="text" id="code" value={code} onChange={event=>setCode(event.target.value.replace(/\D/g, ''))} maxLength={2}/>
 					</div>
 				</div>
-				<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
+				<footer className="save">
+					<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
+				</footer>
 			</form>
 		</>
 	)

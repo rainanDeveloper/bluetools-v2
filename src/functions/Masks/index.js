@@ -41,5 +41,25 @@ module.exports = {
 		const onlyNumbers = date.replace(/\D/g, '')
 
 		return moment(onlyNumbers, 'YYYYMMDD').format('DD/MM/YYYY')
+	},
+	formatToBRLCurrency: (number)=>{
+		number = parseFloat(number)
+	
+		if(typeof(number)==='number'&&!isNaN(number)){
+			return Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(number)
+		}
+		else{
+			return Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(0)
+		}
+	},
+	formatToTwoDigit: (number)=>{
+		number = parseFloat(number)
+
+		if(typeof(number)==='number'&&!isNaN(number)){
+			return Intl.NumberFormat('pt-br', {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(number)
+		}
+		else{
+			return Intl.NumberFormat('pt-br', {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(0)
+		}
 	}
 }

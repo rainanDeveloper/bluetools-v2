@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 			this.hasMany(models.countryDistrict, {foreignKey: 'countryId'})
 			this.hasMany(models.city, {foreignKey: 'countryId',onDelete: 'CASCADE'})
 			this.hasMany(models.customer, {foreignKey: 'countryId'})
+			this.hasMany(models.provider, {foreignKey: 'countryId'})
 		}
 	};
 	country.init({

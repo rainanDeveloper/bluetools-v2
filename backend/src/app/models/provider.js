@@ -1,28 +1,25 @@
-const {
-	Model
-} = require('sequelize');
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-	class customer extends Model {
+	class provider extends Model {
 		static associate(models) {
-			this.hasMany(models.contract, {foreignKey: 'customerId',onDelete: 'CASCADE'})
-			this.hasMany(models.receivement, {foreignKey: 'customerId'})
 			this.belongsTo(models.country, {foreignKey: 'countryId'})
 			this.belongsTo(models.countryDistrict, {foreignKey: 'country_districtId'})
 			this.belongsTo(models.city, {foreignKey: 'cityId'})
 		}
-	};
-	customer.init({
+	}
+	provider.init({
 		name: DataTypes.STRING,
 		email: DataTypes.STRING,
 		ssa_vat_id: DataTypes.CHAR,
 		telephone: DataTypes.CHAR,
-		address: DataTypes.STRING,
-		cep: DataTypes.CHAR,
+		address_1: DataTypes.STRING,
+		address_2: DataTypes.STRING,
+		postal_code: DataTypes.CHAR,
 		birth_date: DataTypes.DATEONLY,
 		status: DataTypes.INTEGER
 	}, {
 		sequelize,
-		modelName: 'customer',
-	});
-	return customer;
-};
+		modelName: 'provider',
+	})
+	return provider
+}

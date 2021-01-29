@@ -109,3 +109,6 @@ dist
 
 
 build/
+
+backend/src/public
+backend/sequelize-data.json

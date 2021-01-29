@@ -43,64 +43,57 @@ module.exports = {
 	},
 	async store(request, response){
 		const {
-			login,
-			password_unhashed,
-			name,
-			email,
-			cpf,
-			cnpj,
-			image
-		} = request.body
-
-		try{
-			const User = await user.create({
-				login,
-				password_unhashed,
-				name,
-				email,
-				cpf,
-				cnpj,
-				image
-			})
-			return response.json(User)
-		}
-		catch(error){
-			return response.status(400).json({message: 'You must supply all the requirements for user creation!'})
-		}
-	},
-	async change(request, response){
-		const {
 			id,
 			login,
 			password_unhashed,
 			name,
 			email,
-			cpf,
-			cnpj,
+			ssa_vat_id,
 			image
 		} = request.body
 
-		if(!id){
-			return response.status(400).json({message: 'id not specified'})
+		if(id){
+			const User = await user.findByPk(id)
+
+			if(!User){
+				return response.status(400).json({message: 'id invalid'})
+			}
+		
+			try{
+				User.login=login
+				User.password_unhashed=password_unhashed
+				User.name=name
+				User.email=email
+				User.ssa_vat_id=ssa_vat_id
+				User.image=image
+		
+				User.save()
+		
+				return response.json(User)		
+			}
+			catch(error){
+				return response.status(400).json({
+					message: 'Error during user update!',
+					error
+				})
+			}
 		}
-
-		const User = await user.findByPk(id)
-
-		if(!User){
-			return response.status(400).json({message: 'id invalid'})
+		else{
+			try{
+				const User = await user.create({
+					login,
+					password_unhashed,
+					name,
+					email,
+					ssa_vat_id,
+					image
+				})
+				return response.json(User)
+			}
+			catch(error){
+				return response.status(400).json({message: 'You must supply all the requirements for user creation!'})
+			}
 		}
-
-		User.login=login
-		User.password_unhashed=password_unhashed
-		User.name=name
-		User.email=email
-		User.cpf=cpf
-		User.cnpj=cnpj
-		User.image=image
-
-		User.save()
-
-		return response.json(User)
 	},
 	async auth(request, response, next){
 		const {auth} = request.headers
@@ -126,5 +119,37 @@ module.exports = {
 		const users = await user.findAll()
 
 		return response.json(users)
+	},
+	async delete(request, response){
+		const {id} = request.params
+
+		if(parseInt(id)===request.user_id.id){
+			return response.status(401)
+			.json({
+				message: `Unabled to delete authenticated user!`
+			})
+		}
+
+		try{
+			const userToDelete = await user.findByPk(id)
+
+			if(userToDelete){
+				await userToDelete.destroy()
+
+				return response.json({
+					message: `User ${id} successfully deleted!`
+				})
+			}
+			else{
+				return response.status(404).json({
+					message: `Unable to find user with id ${id}`
+				})
+			}
+		}
+		catch(error){
+			return response.status(500).json({
+				message: `Internal server error: ${error}!`
+			})
+		}
 	}
 }

@@ -127,7 +127,9 @@ function FormCadCidade({city, saveCallback=()=>{}}){
 						</select>
 					</div>
 				</div>
-				<button type="submit" class="btnSave color-secondary-dark">Salvar</button>
+				<footer className="save">
+					<button type="submit" className="btnSave color-secondary-dark">Salvar</button>
+				</footer>
 			</form>
 		</>
 	)
