@@ -11,7 +11,7 @@
     "faker": "^4.1.0",
     "jspdf": "^2.1.1",
     "jspdf-autotable": "^3.5.13",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "react": "^16.13.1",
     "react-confirm-alert": "^2.6.2",
     "react-dom": "^16.13.1",
